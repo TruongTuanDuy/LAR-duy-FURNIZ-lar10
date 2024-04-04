@@ -42,7 +42,7 @@
                         </div>
                         <div class="card-body border-bottom py-3">
                             <div class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap datatable" id="myDataTable">
+                                <table class="table card-table table-vcenter text-nowrap datatable myTable" id="myDataTable">
                                     <thead>
                                         <tr>
                                             <th class="w-1"><input class="form-check-input m-0 align-middle"
@@ -81,7 +81,7 @@
                                                     $createdAt = $val['created_at'];
                                                     $updatedBy = $val['updated_by'];
                                                     $updatedAt = $val['updated_at'];
-                                                    $test = "456";
+                                                    $test = '456';
                                                 @endphp
 
                                                 <tr>
@@ -111,28 +111,27 @@
                                                         <x-alert abc="123" :xyz="$test" />
                                                         @include('admin.components.item-history', [
                                                             'by' => $createdBy,
-                                                            'time' => $createdAt
+                                                            'time' => $createdAt,
                                                         ])
                                                     </td>
                                                     <td>
                                                         @include('admin.components.item-history', [
                                                             'by' => $updatedBy,
-                                                            'time' => $updatedAt
+                                                            'time' => $updatedAt,
                                                         ])
                                                     </td>
                                                     <td class="text-end">
-                                                        <div class="row g-2 align-items-center">
-                                                            <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
-                                                                <a href="{{ route('admin.collections.edit', ['item' => $val]) }}"
-                                                                    class="btn btn-orange w-100 btn-icon">
-                                                                    <i class="fa-regular fa-pen-to-square"></i></a>
-                                                            </div>
-                                                            <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
-                                                                {{-- <a href="{{ route('admin.collections.destroy') }}"
-                                                                    class="btn btn-red w-100 btn-icon">
-                                                                    <i class="fa-regular fa-trash-can"></i></a> --}}
-                                                            </div>
-                                                        </div>
+                                                        <a href="{{ route('admin.collections.edit', ['item' => $val]) }}"
+                                                            class="btn btn-orange btn-icon">
+                                                            <i class="fa-regular fa-pen-to-square"></i></a>
+                                                        <form class="d-inline-block form-delete" method="POST"
+                                                            action="{{ route('admin.collections.destroy', ['item' => $val]) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-red btn-icon btn-delete">
+                                                                <i class="fa-regular fa-trash-can btn-delete-icon"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

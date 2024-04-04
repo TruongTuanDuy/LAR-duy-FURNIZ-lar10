@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\admin\AdminController;
 use Illuminate\Http\Request;
 use App\Models\Collection as MainModel;
+use App\Models\Collection;
+use PHPUnit\TestRunner\TestResult\Collector;
 
 class CollectionController extends AdminController
 {
@@ -48,7 +50,9 @@ class CollectionController extends AdminController
      */
     public function show(string $id)
     {
+        $item = Collection::find($id);
         //
+        dd($item);
     }
 
     /**
@@ -72,6 +76,6 @@ class CollectionController extends AdminController
      */
     public function destroy(string $id)
     {
-        //
+        dd($id);
     }
 }
