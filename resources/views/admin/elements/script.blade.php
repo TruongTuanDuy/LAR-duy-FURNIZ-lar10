@@ -3,3 +3,4 @@
 
     <!-- Tabler Core -->
     <script src="{{ asset('admin/assets/js/tabler.min.js') }}" defer></script>
+    <script src="{{ asset('admin/js/myScript.js') }}"></script>
