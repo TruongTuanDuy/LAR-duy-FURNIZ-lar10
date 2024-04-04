@@ -53,46 +53,70 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><input class="form-check-input m-0 align-middle" type="checkbox"
-                                                aria-label="Select invoice"></td>
-                                        <td><span class="text-secondary">001401</span></td>
-                                        <td width="25%">Design Works
-                                        </td>
-                                        <td>
-                                            <span class="flag flag-xs flag-country-us me-2"></span>
-                                        </td>
-                                        <td width="8%">
-                                            <input type="number" class="form-control" name="example-text-input">
-                                        </td>
-                                        <td>
-                                            <div class="col-6 col-sm-4 col-md-8 col-xl py-3">
-                                                <a href="#" class="btn btn-info btn-pill w-105">
-                                                    Chưa kích hoạt
-                                                </a>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p><i class="fa-solid fa-user"></i> admin</p>
-                                            <p><i class="fa-solid fa-clock"></i> 04/05/2019</p>
-                                        </td>
-                                        <td>
-                                            <p><i class="fa-solid fa-user"></i> admin</p>
-                                            <p><i class="fa-solid fa-clock"></i> 04/05/2019</p>
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="row g-2 align-items-center">
-                                                <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
-                                                    <a href="#" class="btn btn-orange w-100 btn-icon">
-                                                        <i class="fa-regular fa-pen-to-square"></i></a>
-                                                </div>
-                                                <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
-                                                    <a href="#" class="btn btn-red w-100 btn-icon">
-                                                        <i class="fa-regular fa-trash-can"></i></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @if (count($items) > 0)
+                                        @foreach ($items as $key => $val)
+                                            @php
+                                                $index = $key + 1;
+                                                $class = $index % 2 == 0 ? 'even' : 'odd';
+                                                $id = $val['id'];
+                                                $name = $val['name'];
+                                                $ordering = $val['ordering'];
+                                                $status = $val['status'];
+                                                $picture = $val['id'];
+                                                $createdBy = $val['created_by'];
+                                                $createdAt = $val['created_at'];
+                                                $updatedBy = $val['updated_by'];
+                                                $updatedAt = $val['updated_at'];
+                                            @endphp
+
+                                            <tr>
+                                                <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                                                        aria-label="Select invoice"></td>
+                                                <td><span class="text-secondary">{!! $id !!}</span></td>
+                                                <td width="20%">{!! $name !!}
+                                                </td>
+                                                <td>
+                                                    <span class="flag flag-xs flag-country-us me-2"></span>
+                                                </td>
+                                                <td width="8%">
+                                                    <input type="number" class="form-control" name="example-text-input"
+                                                        value="{!! $ordering !!}">
+                                                </td>
+                                                <td>
+                                                    <div class="col-6 col-sm-4 col-md-8 col-xl py-3">
+                                                        <a href="#" class="btn btn-info btn-pill w-105">
+                                                            {!! $status !!}
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p><i class="fa-solid fa-user"></i> {!! $createdBy !!}</p>
+                                                    <p><i class="fa-solid fa-clock"></i> {!! date('d/m/Y', strtotime($createdAt)) !!}</p>
+                                                </td>
+                                                <td>
+                                                    <p><i class="fa-solid fa-user"></i> {!! $updatedBy !!}</p>
+                                                    <p><i class="fa-solid fa-clock"></i> {!! date('d/m/Y', strtotime($updatedAt)) !!}</p>
+                                                </td>
+                                                <td class="text-end">
+                                                    <div class="row g-2 align-items-center">
+                                                        <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
+                                                            <a href="{{ route('admin.collections.update') }}"
+                                                                class="btn btn-orange w-100 btn-icon">
+                                                                <i class="fa-regular fa-pen-to-square"></i></a>
+                                                        </div>
+                                                        <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
+                                                            <a href="{{ route('admin.collections.destroy') }}"
+                                                                class="btn btn-red w-100 btn-icon">
+                                                                <i class="fa-regular fa-trash-can"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        {{-- @include('admin.templates.list_empty', ['colspan' => 6]) --}}
+                                        @dd('trống');
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

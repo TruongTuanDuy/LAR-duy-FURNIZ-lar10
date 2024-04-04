@@ -2,19 +2,30 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\admin\AdminController;
 use Illuminate\Http\Request;
+use App\Models\Collection as MainModel;
 
-class CollectionController extends Controller
+class CollectionController extends AdminController
 {
+    public function __construct()
+    {
+        $this->pathViewController = 'admin.pages.collection.';
+        // $this->controllerName     = 'collection';
+        $this->model = new MainModel();
+
+        // parent::__construct();
+
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        return view('admin.pages.collection.index');
-    }
+    // public function index()
+    // {
+    //     //
+    //     // return view('admin.pages.collection.index');
+    // }
 
     /**
      * Show the form for creating a new resource.

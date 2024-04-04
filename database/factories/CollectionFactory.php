@@ -18,11 +18,11 @@ class CollectionFactory extends Factory
     {
         return [
             //
-            'name' => fake()->name(),
+            'name' => fake()->text($maxNbChars = 50),
             'status' => fake()->randomElement(['Chưa kích hoạt', 'Đã kích hoạt']),
             'ordering' => fake()->numberBetween($min = 1, $max = 10),
-            'created_by' => fake()->name(),
-            'updated_by' => fake()->name(),
+            'created_by' => fake()->userName($maxNbChars = 5),
+            'updated_by' => fake()->userName($maxNbChars = 5),
             'created_at' => fake()->dateTime(),
             'updated_at' => fake()->dateTime(),
         ];
