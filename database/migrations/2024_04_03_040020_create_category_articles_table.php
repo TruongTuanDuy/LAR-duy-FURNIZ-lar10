@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('category_articles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status');
+            $table->tinyInteger('status')->default(1);
             $table->integer('ordering');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

@@ -1,5 +1,37 @@
 @extends('admin.main')
 @section('content')
+    <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <h2 class="page-title">
+                        Bộ sưu tập
+                    </h2>
+                </div>
+                <!-- Page title actions -->
+                <div class="col-auto ms-auto d-print-none">
+                    <div class="btn-list">
+                        <a href="#" class="btn btn-primary">
+                            <span class="d-none d-sm-inline-block">
+                                Thêm mới
+                            </span>
+                            <span class="d-sm-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon me-0" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 5l0 14" />
+                                    <path d="M5 12l14 0" />
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="page-body">
         <div class="container-xl">
             <div class="row row-deck row-cards">
@@ -100,14 +132,14 @@
                                                 <td class="text-end">
                                                     <div class="row g-2 align-items-center">
                                                         <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
-                                                            <a href="{{ route('admin.collections.update') }}"
+                                                            <a href="{{ route('admin.collections.edit', ['item' => $val]) }}"
                                                                 class="btn btn-orange w-100 btn-icon">
                                                                 <i class="fa-regular fa-pen-to-square"></i></a>
                                                         </div>
                                                         <div class="col-6 col-sm-4 col-md-2 col-xl-auto py-3">
-                                                            <a href="{{ route('admin.collections.destroy') }}"
+                                                            {{-- <a href="{{ route('admin.collections.destroy') }}"
                                                                 class="btn btn-red w-100 btn-icon">
-                                                                <i class="fa-regular fa-trash-can"></i></a>
+                                                                <i class="fa-regular fa-trash-can"></i></a> --}}
                                                         </div>
                                                     </div>
                                                 </td>

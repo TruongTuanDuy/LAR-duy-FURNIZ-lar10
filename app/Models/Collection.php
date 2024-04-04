@@ -11,16 +11,16 @@ class Collection extends Model
     use HasFactory;
 
     // protected $fillable = ['name'];
-    // protected $guarded = [];
+    protected $guarded = [];
 
-    public function __construct()
-    {
-        $this->table               = 'collections';
-        parent::__construct();
-        // $this->folderUpload        = 'collection';
-        // $this->fieldSearchAccepted = ['id', 'name'];
-        // $this->crudNotAccepted     = ['_token'];
-    }
+    // public function __construct()
+    // {
+    //     parent::__construct();
+    //     $this->table               = 'collections';
+    //     // $this->folderUpload        = 'collection';
+    //     // $this->fieldSearchAccepted = ['id', 'name'];
+    //     // $this->crudNotAccepted     = ['_token'];
+    // }
 
     public function listItems($params = null, $options = null)
     {
