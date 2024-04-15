@@ -11,7 +11,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="#" class="btn btn-primary">
+                        <a href="{{ route('admin.collections.create', ['item' => 1]) }}" class="btn btn-primary">
                             <span class="d-none d-sm-inline-block">
                                 Thêm mới
                             </span>
@@ -31,7 +31,6 @@
         </div>
     </div>
 
-
     <div class="page-body">
         <div class="container-xl">
             <div class="row row-deck row-cards">
@@ -42,7 +41,8 @@
                         </div>
                         <div class="card-body border-bottom py-3">
                             <div class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap datatable myTable" id="myDataTable">
+                                <table class="table card-table table-vcenter text-nowrap datatable myTable"
+                                    id="myDataTable">
                                     <thead>
                                         <tr>
                                             <th class="w-1"><input class="form-check-input m-0 align-middle"
@@ -81,7 +81,6 @@
                                                     $createdAt = $val['created_at'];
                                                     $updatedBy = $val['updated_by'];
                                                     $updatedAt = $val['updated_at'];
-                                                    $test = '456';
                                                 @endphp
 
                                                 <tr>
@@ -89,36 +88,23 @@
                                                         <input class="form-check-input m-0 align-middle" type="checkbox"
                                                             aria-label="Select invoice">
                                                     </td>
-                                                    <td><span class="text-secondary">{!! $id !!}</span></td>
-                                                    <td width="20%">{!! $name !!}
+                                                    <td><span class="text-secondary">{{ $id }}</span></td>
+                                                    <td width="15%">{{ $name }}
                                                     </td>
                                                     <td>
                                                         <span class="flag flag-xs flag-country-us me-2"></span>
                                                     </td>
                                                     <td width="8%">
-                                                        <input type="number" class="form-control" name="example-text-input"
-                                                            value="{!! $ordering !!}">
+                                                        <x-admin.item-ordering :ordering="$ordering" />
                                                     </td>
                                                     <td>
-                                                        <div class="col-6 col-sm-4 col-md-8 col-xl py-3">
-                                                            <a href="#"
-                                                                class="btn {{ $status === 1 ? 'btn-info' : 'btn-secondary' }} btn-pill">
-                                                                {!! $status === 1 ? 'Kích hoạt' : 'Chưa kích hoạt' !!}
-                                                            </a>
-                                                        </div>
+                                                        <x-admin.item-status :status="$status" />
                                                     </td>
                                                     <td>
-                                                        <x-alert abc="123" :xyz="$test" />
-                                                        @include('admin.components.item-history', [
-                                                            'by' => $createdBy,
-                                                            'time' => $createdAt,
-                                                        ])
+                                                        <x-admin.item-history :by="$createdBy" :time="$createdAt" />
                                                     </td>
                                                     <td>
-                                                        @include('admin.components.item-history', [
-                                                            'by' => $updatedBy,
-                                                            'time' => $updatedAt,
-                                                        ])
+                                                        <x-admin.item-history :by="$updatedBy" :time="$updatedAt" />
                                                     </td>
                                                     <td class="text-end">
                                                         <a href="{{ route('admin.collections.edit', ['item' => $val]) }}"

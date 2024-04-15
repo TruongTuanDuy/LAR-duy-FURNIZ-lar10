@@ -13,6 +13,12 @@ class Collection extends Model
     // protected $fillable = ['name'];
     protected $guarded = [];
 
+    protected $crudNotAccepted = [
+        '_token',
+        '_method',
+        'thumb_current',
+        'thumb',
+    ];
     // public function __construct()
     // {
     //     parent::__construct();
@@ -35,10 +41,25 @@ class Collection extends Model
         return $result;
     }
 
+    public function updateItem($params = null, $options = null)
+    {
+        $params = array_diff_key($params, array_flip($this->crudNotAccepted));
+        // $params['updated_by']   = "duytruong";
+        $params['updated_at']   = date('Y-m-d H:i:s');
+        self::where('id', $params['id'])->update($params);
+    }
+
+    public function storeItem($params = null, $options = null)
+    {
+        // dd($params);
+        $params = array_diff_key($params, array_flip($this->crudNotAccepted));
+        // $params['created_by']   = "duytruong";
+        $params['created_at']   = date('Y-m-d H:i:s');
+        self::insert($params);
+    }
+
     public function deleteItem($params = null, $options = null)
     {
-        if ($options['task'] == 'delete-item') {
-            self::where('id', $item)->delete();
-        }
+        self::where('id', $params['id'])->delete();
     }
 }

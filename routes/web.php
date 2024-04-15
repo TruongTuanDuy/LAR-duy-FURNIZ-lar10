@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FileManagerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,4 +74,14 @@ Route::group([
 ], function () {
     Route::resource('collections', CollectionController::class)->parameters(['collections' => 'item']);
     Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
+    Route::get('/file-manager', [FileManagerController::class, 'index'])->name('file-manager.index');
+});
+
+
+
+// Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+//     \UniSharp\LaravelFilemanager\Lfm::routes();
+// });
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });

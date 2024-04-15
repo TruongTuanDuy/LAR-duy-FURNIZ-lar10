@@ -29,6 +29,13 @@ return [
     */
 
     'disks' => [
+        'file_manager' => [
+            'driver' => 'local',
+            'root' => public_path('file-manager'),
+            'url' => env('APP_URL') . '/file-manager',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         'local' => [
             'driver' => 'local',
@@ -39,7 +46,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],

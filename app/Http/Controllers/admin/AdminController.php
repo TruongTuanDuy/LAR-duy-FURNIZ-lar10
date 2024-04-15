@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,11 +23,6 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $items              = $this->model->listItems($this->params, ['task'  => 'admin-list-items']);
-        return view($this->pathViewController .  'index', [
-            'params'        => $this->params,
-            'items'         => $items,
-        ]);
     }
 
     /**
@@ -68,9 +63,5 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
-        // $params["id"]             = $id;
-        // $this->model->deleteItem($params, ['task' => 'delete-item']);
-        return redirect()->route($this->controllerName)->with('zvn_notify', 'Xóa phần tử thành công!');
-        // return redirect()->route($this->controllerName)->with('zvn_notify', 'Xóa phần tử thành công!');
     }
 }

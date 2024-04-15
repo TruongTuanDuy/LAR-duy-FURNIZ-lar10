@@ -3,7 +3,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
 <!-- CSS Libs -->
-<link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.3/datatables.min.css" rel="stylesheet">
+{{-- <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.3/datatables.min.css" rel="stylesheet"> --}}
+<link href="{{ asset('datatables/datatables.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet" />
 
 {{-- CSS Theme --}}
