@@ -1,5 +1,25 @@
 new DataTable("#myDataTable");
 
+
+window.addEventListener("load", function () {
+
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+
+    // var options = {
+    //     filebrowserImageBrowseUrl: 'http://furniz.test/admin/file-manager?type=Images',
+    //     filebrowserImageUploadUrl: 'http://furniz.test/admin/file-manager/upload?type=Images&_token=',
+    //     filebrowserBrowseUrl: 'http://furniz.test/admin/file-manager?type=Files',
+    //     filebrowserUploadUrl: 'http://furniz.test/admin/file-manager/upload?type=Files&_token='
+    // };
+
+    CKEDITOR.replace("content", options)
+});
+
 document.querySelector(".myTable").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -28,3 +48,5 @@ document.addEventListener("click", function (e) {
     //   target.nextElementSibling.submit();
     // }
 });
+
+

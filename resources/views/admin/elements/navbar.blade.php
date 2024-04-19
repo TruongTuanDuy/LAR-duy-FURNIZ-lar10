@@ -173,7 +173,7 @@
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbar-menu">
-            <div>
+            {{-- <div>
                 <form action="./" method="get" autocomplete="off" novalidate>
                     <div class="input-icon">
                         <span class="input-icon-addon">
@@ -190,7 +190,7 @@
                             aria-label="Search in website">
                     </div>
                 </form>
-            </div>
+            </div> --}}
         </div>
     </div>
 </header>

@@ -1,18 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
+use App\Models\CategoryArticle as MainModel;
 
-class CategoryArticleController extends Controller
+class CategoryArticleController extends AdminController
 {
+    public function __construct()
+    {
+        $this->model = new MainModel();
+        $this->pathViewController = 'admin.pages.category-article.';
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $items  = $this->model->listItems($this->params, ['task'  => 'admin-list-items']);
+        return view($this->pathViewController .  'index', [
+            'params'    => $this->params,
+            'items'     => $items,
+        ]);
     }
 
     /**
@@ -20,7 +31,9 @@ class CategoryArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view($this->pathViewController .  'create', [
+            'params'        => $this->params,
+        ]);
     }
 
     /**
@@ -28,7 +41,9 @@ class CategoryArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->params = $request->all();
+        $this->model->storeItem($this->params);
+        return redirect()->route('admin.categoryArticles.index');
     }
 
     /**
@@ -44,7 +59,11 @@ class CategoryArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = MainModel::find($id);
+        return view($this->pathViewController .  'edit', [
+            'params'        => $this->params,
+            'item'         => $item,
+        ]);
     }
 
     /**
@@ -52,7 +71,10 @@ class CategoryArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->params = $request->all();
+        $this->params['id'] = $id;
+        $this->model->updateItem($this->params);
+        return redirect()->route('admin.categoryArticles.index');
     }
 
     /**
@@ -60,6 +82,8 @@ class CategoryArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $params["id"]             = $id;
+        $this->model->deleteItem($params, ['task' => 'delete-item']);
+        return redirect()->route('admin.categoryArticles.index');
     }
 }

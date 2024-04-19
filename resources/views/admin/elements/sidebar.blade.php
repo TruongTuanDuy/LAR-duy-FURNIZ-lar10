@@ -218,59 +218,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Dashboard
-                        </span>
-                    </a>
-                    <a class="nav-link" href="{{ route('admin.collections.index') }}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/box-multiple-1 -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M7 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z">
-                                </path>
-                                <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"></path>
-                                <path d="M14 14v-8l-2 2"></path>
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Collection
-                        </span>
-                    </a>
-                    <a class="nav-link" href="./">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/box-multiple-2 -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M7 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z">
-                                </path>
-                                <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"></path>
-                                <path d="M12 8a2 2 0 1 1 4 0c0 .591 -.417 1.318 -.816 1.858l-3.184 4.143l4 0"></path>
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Article
-                        </span>
-                    </a>
-                    <a class="nav-link" href="{{ route('admin.file-manager.index') }}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/paperclip -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path
-                                    d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5">
-                                </path>
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            File Manager
+                            Bảng điều khiển
                         </span>
                     </a>
                 </li>
@@ -291,105 +239,143 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            ABC
+                            Người dùng
                         </span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./alerts.html">
-                                    Alerts
+                                    Nhóm
                                 </a>
-                                <div class="dropend">
-                                    <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication"
-                                        data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
-                                        aria-expanded="false">
-                                        Authentication
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a href="./sign-in.html" class="dropdown-item">
-                                            Sign in
-                                        </a>
-                                        <a href="./sign-in-link.html" class="dropdown-item">
-                                            Sign in link
-                                        </a>
-                                    </div>
-                                </div>
-                                <a class="dropdown-item" href="./badges.html">
-                                    Badges
-                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+                                <a class="dropdown-item" href="./alerts.html">
+                                    Người dùng
                                 </a>
-                                <div class="dropend">
-                                    <a class="dropdown-item dropdown-toggle" href="#sidebar-cards"
-                                        data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
-                                        aria-expanded="false">
-                                        Cards
-                                        <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a href="./cards.html" class="dropdown-item">
-                                            Sample cards
-                                        </a>
-                                        <a href="./card-actions.html" class="dropdown-item">
-                                            Card actions
-                                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                                        </a>
-                                        <a href="./cards-masonry.html" class="dropdown-item">
-                                            Cards Masonry
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li class="nav-item active dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
                         <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M4 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                <path
-                                    d="M4 13m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                <path
-                                    d="M14 4m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                <path
-                                    d="M14 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                                <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                                <path d="M12 12l8 -4.5" />
+                                <path d="M12 12l0 9" />
+                                <path d="M12 12l-8 -4.5" />
+                                <path d="M16 5.25l-8 4.5" />
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            XYZ
+                            Bài viết
                         </span>
                     </a>
-                    <div class="dropdown-menu show">
+                    <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
-                                    Horizontal
+                                <a class="dropdown-item" href="{{ route('admin.categoryArticles.index') }}">
+                                    Danh mục
                                 </a>
-                                <a class="dropdown-item" href="./layout-boxed.html">
-                                    Boxed
-                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                                </a>
-                                <a class="dropdown-item active" href="./layout-combo.html">
-                                    Combined
-                                </a>
-                            </div>
-                            <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-rtl.html">
-                                    RTL mode
-                                </a>
-                                <a class="dropdown-item" href="./layout-fluid.html">
-                                    Fluid
+                                <a class="dropdown-item" href="{{ route('admin.articles.index') }}">
+                                    Bài viết
                                 </a>
                             </div>
                         </div>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="active nav-link" href="{{ route('admin.collections.index') }}">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/box-multiple-1 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M7 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z">
+                                </path>
+                                <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"></path>
+                                <path d="M14 14v-8l-2 2"></path>
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Bộ sưu tập
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
+                                <path d="M12 12l8 -4.5" />
+                                <path d="M12 12l0 9" />
+                                <path d="M12 12l-8 -4.5" />
+                                <path d="M16 5.25l-8 4.5" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Sản phẩm
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./alerts.html">
+                                    Danh mục
+                                </a>
+                                <a class="dropdown-item" href="./alerts.html">
+                                    Sản phẩm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.file-manager.index') }}">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/paperclip -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Tập tin
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./">
+                        <span
+                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Cấu hình
+                        </span>
+                    </a>
                 </li>
             </ul>
         </div>

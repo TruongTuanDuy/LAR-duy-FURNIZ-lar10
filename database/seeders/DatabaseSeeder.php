@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Collection;
 use App\Models\CategoryArticle;
+use App\Models\Article;
 
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
         Collection::factory(20)->create();
         CategoryArticle::factory(20)->create();
+        Article::factory(20)->create();
     }
 }

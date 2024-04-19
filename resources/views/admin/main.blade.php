@@ -22,7 +22,7 @@
             @yield('content')
 
             <!-- Page footer -->
-            @include('admin.elements.footer')
+            {{-- @include('admin.elements.footer') --}}
         </div>
     </div>
 

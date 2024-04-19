@@ -66,7 +66,6 @@ class CollectionController extends AdminController
         return view($this->pathViewController .  'edit', [
             'params'        => $this->params,
             'item'         => $item,
-
         ]);
     }
 

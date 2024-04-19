@@ -11,7 +11,7 @@
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('admin.collections.create', ['item' => 1]) }}" class="btn btn-primary">
+                        <a href="{{ route('admin.collections.create') }}" class="btn btn-primary">
                             <span class="d-none d-sm-inline-block">
                                 Thêm mới
                             </span>
@@ -68,19 +68,25 @@
                                     </thead>
                                     <tbody>
                                         @if (count($items) > 0)
-                                            @foreach ($items as $key => $val)
+                                            @foreach ($items as $key => $item)
                                                 @php
                                                     $index = $key + 1;
                                                     $class = $index % 2 == 0 ? 'even' : 'odd';
-                                                    $id = $val['id'];
-                                                    $name = $val['name'];
-                                                    $ordering = $val['ordering'];
-                                                    $status = $val['status'];
-                                                    $picture = $val['id'];
-                                                    $createdBy = $val['created_by'];
-                                                    $createdAt = $val['created_at'];
-                                                    $updatedBy = $val['updated_by'];
-                                                    $updatedAt = $val['updated_at'];
+                                                    $id = $item['id'];
+                                                    $name = $item['name'];
+                                                    $ordering = $item['ordering'];
+                                                    $status = $item['status'];
+                                                    $picture = $item['id'];
+                                                    $createdBy = $item['created_by'];
+                                                    $createdAt = $item['created_at'];
+                                                    $updatedBy = $item['updated_by'];
+                                                    $updatedAt = $item['updated_at'];
+
+                                                    $lengthName = 30;
+                                                    if (strlen($name) > $lengthName) {
+                                                        $name = wordwrap($name, $lengthName);
+                                                        $name = substr($name, 0, strpos($name, "\n")) . '...';
+                                                    }
                                                 @endphp
 
                                                 <tr>
@@ -95,10 +101,10 @@
                                                         <span class="flag flag-xs flag-country-us me-2"></span>
                                                     </td>
                                                     <td width="8%">
-                                                        <x-admin.item-ordering :ordering="$ordering" />
+                                                        <x-admin.input-ordering :ordering="$ordering" />
                                                     </td>
                                                     <td>
-                                                        <x-admin.item-status :status="$status" />
+                                                        <x-admin.btn-status :status="$status" />
                                                     </td>
                                                     <td>
                                                         <x-admin.item-history :by="$createdBy" :time="$createdAt" />
@@ -107,11 +113,11 @@
                                                         <x-admin.item-history :by="$updatedBy" :time="$updatedAt" />
                                                     </td>
                                                     <td class="text-end">
-                                                        <a href="{{ route('admin.collections.edit', ['item' => $val]) }}"
+                                                        <a href="{{ route('admin.collections.edit', ['item' => $item]) }}"
                                                             class="btn btn-orange btn-icon">
                                                             <i class="fa-regular fa-pen-to-square"></i></a>
                                                         <form class="d-inline-block form-delete" method="POST"
-                                                            action="{{ route('admin.collections.destroy', ['item' => $val]) }}">
+                                                            action="{{ route('admin.collections.destroy', ['item' => $item]) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-red btn-icon btn-delete">

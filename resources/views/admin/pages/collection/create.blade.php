@@ -34,6 +34,7 @@
     @php
         $ordering = 10;
         $status = 1;
+        $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
     @endphp
 
     <div class="page-body">
@@ -50,27 +51,19 @@
                                 <label class="col-2 col-form-label required">Name</label>
                                 <div class="col">
                                     <input type="text" class="form-control" name="name">
-                                    <small class="form-hint">Lời nhắc linh tinh.</small>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Status</label>
                                 <div class="col">
-                                    {{-- <select class="form-select">
-                                        <option value="1">One</option>
-                                        <option value="2" selected="selected">Two</option>
-                                        <option value="3">Three</option>
-                                    </select> --}}
-                                    <x-admin.item-select :status="$status" />
-                                    <small class="form-hint">Lời nhắc linh tinh.</small>
+                                    <x-admin.item-select :select-value="$status" :select-list="$statusList" select-name="status" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Ordering</label>
                                 <div class="col">
                                     {{-- <input type="number" class="form-control" value="{{ $ordering }}"> --}}
-                                    <x-admin.item-ordering :ordering="$ordering" />
-                                    <small class="form-hint">Lời nhắc linh tinh.</small>
+                                    <x-admin.input-ordering :ordering="$ordering" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
