@@ -29,6 +29,11 @@ return [
     */
 
     'disks' => [
+        'media' => [
+            'driver' => 'local',
+            'root' => public_path('media'),
+            'url' => env('APP_URL') . '/media',
+        ],
         'file_manager' => [
             'driver' => 'local',
             'root' => public_path('file-manager'),

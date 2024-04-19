@@ -43,7 +43,8 @@
         <div class="container-xl">
             <div class="row row-deck row-cards">
                 <div class="col-md-12">
-                    <form class="card" method="POST" action="{{ route('admin.articles.store') }}">
+                    <form class="card" method="POST" enctype="multipart/form-data"
+                        action="{{ route('admin.articles.store') }}">
                         @csrf
                         <div class="card-header">
                             <h3 class="card-title">Thêm mới</h3>
@@ -90,8 +91,9 @@
                                 <label class="col-2 col-form-label">Thumb</label>
                                 <div class="col">
                                     <div class="input-group mb-2">
-                                        <button class="btn" type="button">Choose File</button>
-                                        <input type="text" class="form-control" placeholder="No file chosen">
+                                        {{-- <button class="btn" type="button">Choose File</button> --}}
+                                        <input type="file" class="form-control" id="thumb" name="thumb"
+                                            placeholder="No file chosen">
                                     </div>
                                 </div>
                             </div>
