@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
-use App\Models\Article as MainModel;
-use App\Models\CategoryArticle;
+use App\Models\CategoryProduct as MainModel;
 
-class ArticleController extends AdminController
+class CategoryProductController extends AdminController
 {
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->pathViewController = 'admin.pages.article.';
+        $this->pathViewController = 'admin.pages.category-product.';
     }
 
     /**
@@ -32,11 +31,10 @@ class ArticleController extends AdminController
      */
     public function create()
     {
-        $categoryArticle = new CategoryArticle();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-category']);
+        $nodes = $this->model->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
         return view($this->pathViewController .  'create', [
             'params'        => $this->params,
-            'categoryList' => $categoryList
+            'nodes'     => $nodes,
         ]);
     }
 
@@ -46,9 +44,8 @@ class ArticleController extends AdminController
     public function store(Request $request)
     {
         $this->params = $request->all();
-        $this->model->addMediaFromRequest('thumb')->toMediaCollection();
         $this->model->storeItem($this->params);
-        return redirect()->route('admin.articles.index');
+        return redirect()->route('admin.categoryProducts.index');
     }
 
     /**
@@ -65,12 +62,14 @@ class ArticleController extends AdminController
     public function edit(string $id)
     {
         $item = MainModel::find($id);
-        $categoryArticle = new CategoryArticle();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-category']);
+        $this->params['id'] = $id;
+        // dd($this->params);
+
+        $nodes = $this->model->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
         return view($this->pathViewController .  'edit', [
             'params'        => $this->params,
-            'item'         => $item,
-            'categoryList' => $categoryList
+            'item'          => $item,
+            'nodes'         => $nodes,
         ]);
     }
 
@@ -82,7 +81,7 @@ class ArticleController extends AdminController
         $this->params = $request->all();
         $this->params['id'] = $id;
         $this->model->updateItem($this->params);
-        return redirect()->route('admin.articles.index');
+        return redirect()->route('admin.categoryProducts.index');
     }
 
     /**
@@ -92,6 +91,6 @@ class ArticleController extends AdminController
     {
         $params["id"]             = $id;
         $this->model->deleteItem($params, ['task' => 'delete-item']);
-        return redirect()->route('admin.articles.index');
+        return redirect()->route('admin.categoryProducts.index');
     }
 }

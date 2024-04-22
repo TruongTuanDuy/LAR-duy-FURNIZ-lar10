@@ -73,8 +73,10 @@ Route::group([
     'as' => 'admin.'
 ], function () {
     Route::resource('collections', CollectionController::class)->parameters(['collections' => 'item']);
+    Route::resource('categoryProducts', CategoryProductController::class)->parameters(['categoryProducts' => 'item']);
     Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
     Route::resource('articles', ArticleController::class)->parameters(['articles' => 'item']);
+    // Route::resource('products', ProductController::class)->parameters(['products' => 'item']);
     Route::get('/file-manager', [FileManagerController::class, 'index'])->name('file-manager.index');
 });
 
