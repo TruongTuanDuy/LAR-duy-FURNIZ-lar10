@@ -73,7 +73,7 @@
                                                     $index = $key + 1;
                                                     $class = $index % 2 == 0 ? 'even' : 'odd';
                                                     $id = $item['id'];
-                                                    $name = $item['name'];
+                                                    $name = $item->name_short;
                                                     $ordering = $item['ordering'];
                                                     $status = $item['status'];
                                                     $picture = $item['id'];
@@ -81,12 +81,6 @@
                                                     $createdAt = $item['created_at'];
                                                     $updatedBy = $item['updated_by'];
                                                     $updatedAt = $item['updated_at'];
-
-                                                    $lengthName = 30;
-                                                    if (strlen($name) > $lengthName) {
-                                                        $name = wordwrap($name, $lengthName);
-                                                        $name = substr($name, 0, strpos($name, "\n")) . '...';
-                                                    }
                                                 @endphp
 
                                                 <tr>

@@ -59,13 +59,16 @@
                                 <label class="col-2 col-form-label required">Name</label>
                                 <div class="col">
                                     <input type="text" class="form-control" name="name" value="{{ $name }}">
+                                    {{-- <textarea name="name" id="name" cols="100" rows="10">{{ $name }}</textarea> --}}
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Description</label>
                                 <div class="col">
-                                    <input type="text" class="form-control" name="description"
-                                        value="{{ $description }}">
+                                    {{-- <input type="text" class="form-control" name="description"
+                                        value="{{ $description }}"> --}}
+                                    <textarea name="description" id="description" cols="100" rows="10">{{ $description }}</textarea>
+
                                 </div>
                             </div>
                             <div class="mb-3 row">

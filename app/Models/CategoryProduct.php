@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
+use App\Helpers\Template;
 
 class CategoryProduct extends Model
 {
@@ -20,12 +21,17 @@ class CategoryProduct extends Model
         'thumb',
     ];
 
+    public function getNameShortAttribute()
+    {
+        $string = $this->name;
+        $length = 30;
+        return Template::stringShorten($string, $length);
+    }
+
     public function listItems($params = null, $options = null)
     {
         $result = null;
         if ($options['task'] == "admin-list-items") {
-            // $query = $this->select('id', 'name', 'status', 'created_at', 'created_by', 'updated_at', 'updated_by');
-            // $result =  $query->get();
             $result = self::withDepth()->having('depth', '>', 0)->defaultOrder()->get()->toFlatTree();
         }
 
@@ -35,10 +41,10 @@ class CategoryProduct extends Model
                 $node = self::find($params['id']);
                 $query->where('_lft', '<', $node->_lft)->orWhere('_lft', '>', $node->_rgt);
             }
-
             $nodes = $query->get()->toFlatTree();
+
             foreach ($nodes as $value) {
-                $result[$value['id']] = str_repeat('|---', $value['depth']) . $value['name'];
+                $result[$value['id']] = str_repeat('|---', $value['depth']) . $this->stringShorten($value['name'], 50);
             }
         }
         return $result;
@@ -46,7 +52,6 @@ class CategoryProduct extends Model
 
     public function storeItem($params = null, $options = null)
     {
-        // dd($params);
         $params = array_diff_key($params, array_flip($this->crudNotAccepted));
         // $params['created_by']   = "duytruong";
         $params['created_at']   = date('Y-m-d H:i:s');

@@ -58,7 +58,6 @@
                                                 </svg>
                                             </th>
                                             <th>Tên</th>
-                                            <th>Hình ảnh</th>
                                             <th>Sắp xếp</th>
                                             <th>Trạng thái</th>
                                             <th>Tạo mới</th>
@@ -73,20 +72,13 @@
                                                     $index = $key + 1;
                                                     $class = $index % 2 == 0 ? 'even' : 'odd';
                                                     $id = $item['id'];
-                                                    $name = $item['name'];
+                                                    $name = $item->name_short;
                                                     $ordering = $item['ordering'];
                                                     $status = $item['status'];
-                                                    $picture = $item['id'];
                                                     $createdBy = $item['created_by'];
                                                     $createdAt = $item['created_at'];
                                                     $updatedBy = $item['updated_by'];
                                                     $updatedAt = $item['updated_at'];
-
-                                                    $lengthName = 30;
-                                                    if (strlen($name) > $lengthName) {
-                                                        $name = wordwrap($name, $lengthName);
-                                                        $name = substr($name, 0, strpos($name, "\n")) . '...';
-                                                    }
                                                 @endphp
 
                                                 <tr>
@@ -95,10 +87,7 @@
                                                             aria-label="Select invoice">
                                                     </td>
                                                     <td><span class="text-secondary">{{ $id }}</span></td>
-                                                    <td width="15%">{{ $name }}
-                                                    </td>
-                                                    <td>
-                                                        <span class="flag flag-xs flag-country-us me-2"></span>
+                                                    <td width="25%">{{ $name }}
                                                     </td>
                                                     <td width="8%">
                                                         <x-admin.input-ordering :ordering="$ordering" />

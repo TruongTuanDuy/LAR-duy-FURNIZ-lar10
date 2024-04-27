@@ -45,9 +45,8 @@ class ArticleController extends AdminController
      */
     public function store(Request $request)
     {
-        $this->params = $request->all();
-        $this->model->addMediaFromRequest('thumb')->toMediaCollection();
-        $this->model->storeItem($this->params);
+        $item = $this->model->storeItem($request->all());
+        $item->addMediaFromRequest('thumb')->toMediaCollection('images');
         return redirect()->route('admin.articles.index');
     }
 

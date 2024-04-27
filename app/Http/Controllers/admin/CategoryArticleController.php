@@ -41,8 +41,7 @@ class CategoryArticleController extends AdminController
      */
     public function store(Request $request)
     {
-        $this->params = $request->all();
-        $this->model->storeItem($this->params);
+        $this->model->storeItem($request->all());
         return redirect()->route('admin.categoryArticles.index');
     }
 
@@ -83,7 +82,7 @@ class CategoryArticleController extends AdminController
     public function destroy(string $id)
     {
         $params["id"]             = $id;
-        $this->model->deleteItem($params, ['task' => 'delete-item']);
+        $this->model->deleteItem($params);
         return redirect()->route('admin.categoryArticles.index');
     }
 }

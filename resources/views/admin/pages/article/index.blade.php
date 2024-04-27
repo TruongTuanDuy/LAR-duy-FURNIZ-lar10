@@ -70,24 +70,12 @@
                                             @foreach ($items as $key => $item)
                                                 @php
                                                     $id = $item['id'];
-                                                    $name = $item['name'];
-                                                    $description = $item['description'];
+                                                    $name = $item->name_short;
+                                                    $description = $item->description_short;
                                                     $categoryId = $item['category_article_id'];
                                                     $ordering = $item['ordering'];
                                                     $status = $item['status'];
                                                     $picture = $item['id'];
-                                                    $lengthName = 30;
-                                                    if (strlen($name) > $lengthName) {
-                                                        $name = wordwrap($name, $lengthName);
-                                                        $name = substr($name, 0, strpos($name, "\n")) . '...';
-                                                    }
-                                                    $lengthDescription = 40;
-                                                    if (strlen($description) > $lengthDescription) {
-                                                        $description = wordwrap($description, $lengthDescription);
-                                                        $description =
-                                                            substr($description, 0, strpos($description, "\n")) . '...';
-                                                    }
-
                                                 @endphp
 
                                                 <tr>
@@ -98,9 +86,11 @@
                                                     <td><span class="text-secondary">{{ $id }}</span></td>
                                                     <td width="15%">
                                                         <p><strong>Tên:</strong> {!! $name !!}</p>
-                                                        <p><strong>Mô tả:</strong> {!! $description !!}</p>
+                                                        <p><strong>Mô tả:</strong>
+                                                            {!! $description !!}
+                                                        </p>
                                                     <td>
-                                                        <span class="flag flag-xs flag-country-us me-2"></span>
+                                                        {{ $picture }}
                                                     </td>
                                                     </td>
                                                     <td>{{ $categoryId }}

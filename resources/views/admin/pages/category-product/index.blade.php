@@ -58,7 +58,6 @@
                                                 </svg>
                                             </th>
                                             <th>Tên</th>
-                                            <th>Hình ảnh</th>
                                             <th>Sắp xếp</th>
                                             <th>Trạng thái</th>
                                             <th>Tạo mới</th>
@@ -72,23 +71,13 @@
                                                 @php
                                                     $id = $item['id'];
                                                     $level = $item['depth'];
-                                                    // dd($level);
-                                                    $name = $item['name'];
+                                                    $name = $item->name_short;
                                                     $status = $item['status'];
                                                     $ordering = $item['ordering'];
                                                     $createdBy = $item['created_by'];
                                                     $createdAt = $item['created_at'];
                                                     $updatedBy = $item['updated_by'];
                                                     $updatedAt = $item['updated_at'];
-
-                                                    $lengthName = 30;
-                                                    if (strlen($name) > $lengthName) {
-                                                        $name = wordwrap($name, $lengthName);
-                                                        $name = substr($name, 0, strpos($name, "\n")) . '...';
-                                                    }
-
-                                                    $xhtmlLevel = str_repeat('|---', $level - 1);
-
                                                 @endphp
 
                                                 <tr>
@@ -97,16 +86,8 @@
                                                             aria-label="Select invoice">
                                                     </td>
                                                     <td><span class="text-secondary">{{ $id }}</span></td>
-                                                    <td width="15%">
-                                                        {{ $xhtmlLevel }}
-                                                        <span class="badge bg-blue text-blue-fg badge-pill">
-                                                            {{ $level }}</span>
-                                                        <strong>{{ $name }}</strong>
-
-                                                        {{-- <x-admin.item-name :level="$level" :name="$name" /> --}}
-                                                    </td>
-                                                    <td>
-                                                        <span class="flag flag-xs flag-country-us me-2"></span>
+                                                    <td width="25%">
+                                                        <x-admin.item-name-level :level="$level" :name="$name" />
                                                     </td>
                                                     <td width="8%">
                                                         <x-admin.input-ordering :ordering="$ordering" />

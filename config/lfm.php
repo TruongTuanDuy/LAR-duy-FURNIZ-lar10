@@ -63,7 +63,7 @@ return [
             ],
         ],
         'image' => [
-            'folder_name'  => 'photos',
+            'folder_name'  => '',
             'startup_view' => 'grid',
             'max_size'     => 50000, // size in KB
             'thumb' => true,
@@ -99,7 +99,7 @@ return [
 
     'rename_file'              => false,
 
-    'rename_duplicates'        => false,
+    'rename_duplicates'        => true,
 
     'alphanumeric_filename'    => false,
 
