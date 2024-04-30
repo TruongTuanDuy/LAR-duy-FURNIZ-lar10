@@ -69,15 +69,15 @@
                                         @if (count($items) > 0)
                                             @foreach ($items as $key => $item)
                                                 @php
-                                                    $id = $item['id'];
-                                                    $level = $item['depth'];
+                                                    $id = $item->id;
+                                                    $level = $item->depth;
                                                     $name = $item->name_short;
-                                                    $status = $item['status'];
-                                                    $ordering = $item['ordering'];
-                                                    $createdBy = $item['created_by'];
-                                                    $createdAt = $item['created_at'];
-                                                    $updatedBy = $item['updated_by'];
-                                                    $updatedAt = $item['updated_at'];
+                                                    $status = $item->status;
+                                                    $ordering = $item->ordering;
+                                                    $createdBy = $item->created_by;
+                                                    $createdAt = $item->created_at;
+                                                    $updatedBy = $item->updated_by;
+                                                    $updatedAt = $item->updated_at;
                                                 @endphp
 
                                                 <tr>

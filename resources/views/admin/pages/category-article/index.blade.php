@@ -69,16 +69,14 @@
                                         @if (count($items) > 0)
                                             @foreach ($items as $key => $item)
                                                 @php
-                                                    $index = $key + 1;
-                                                    $class = $index % 2 == 0 ? 'even' : 'odd';
-                                                    $id = $item['id'];
+                                                    $id = $item->id;
                                                     $name = $item->name_short;
-                                                    $ordering = $item['ordering'];
-                                                    $status = $item['status'];
-                                                    $createdBy = $item['created_by'];
-                                                    $createdAt = $item['created_at'];
-                                                    $updatedBy = $item['updated_by'];
-                                                    $updatedAt = $item['updated_at'];
+                                                    $ordering = $item->ordering;
+                                                    $status = $item->status;
+                                                    $createdBy = $item->created_by;
+                                                    $createdAt = $item->created_at;
+                                                    $updatedBy = $item->updated_by;
+                                                    $updatedAt = $item->updated_at;
                                                 @endphp
 
                                                 <tr>

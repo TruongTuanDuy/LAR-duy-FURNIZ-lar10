@@ -46,8 +46,8 @@ class ArticleController extends AdminController
     public function store(Request $request)
     {
         $item = $this->model->storeItem($request->all());
-        $item->addMediaFromRequest('thumb')->toMediaCollection('images');
-        return redirect()->route('admin.articles.index');
+        $item->addMediaFromRequest('image')->toMediaCollection('images');
+        return redirect()->route('admin.articles.create');
     }
 
     /**
@@ -66,6 +66,7 @@ class ArticleController extends AdminController
         $item = MainModel::find($id);
         $categoryArticle = new CategoryArticle();
         $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-category']);
+
         return view($this->pathViewController .  'edit', [
             'params'        => $this->params,
             'item'         => $item,
@@ -80,8 +81,12 @@ class ArticleController extends AdminController
     {
         $this->params = $request->all();
         $this->params['id'] = $id;
-        $this->model->updateItem($this->params);
-        return redirect()->route('admin.articles.index');
+        $item = $this->model->updateItem($this->params);
+        if ($request->hasFile('image')) {
+            $item->clearMediaCollection('images');
+            $item->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return redirect()->route('admin.articles.edit', ['item' => $id]);
     }
 
     /**

@@ -41,7 +41,9 @@
         <div class="container-xl">
             <div class="row row-deck row-cards">
                 <div class="col-md-12">
-                    <form class="card" method="POST" action="{{ route('admin.collections.store') }}">
+                    <form class="card" method="POST" enctype="multipart/form-data"
+                        action="{{ route('admin.collections.store') }}">
+
                         @csrf
                         <div class="card-header">
                             <h3 class="card-title">Thêm mới</h3>
@@ -67,13 +69,14 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Thumb</label>
+                                <label class="col-2 col-form-label">Image</label>
                                 <div class="col">
                                     <div class="input-group mb-2">
-                                        <button class="btn" type="button">Choose File</button>
-                                        <input type="text" class="form-control" placeholder="No file chosen">
+                                        <input type="file" class="form-control" id="image" name="image"
+                                            placeholder="No file chosen">
                                     </div>
-                                    <small class="form-hint">Chọn tệp hình ảnh.</small>
+                                    <img hidden src="" id="image-preview" alt="image-preview"
+                                        style="max-width: 200px">
                                 </div>
                             </div>
                         </div>

@@ -33,11 +33,11 @@
 
     @php
         $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
-        $id = $item['id'];
-        $name = $item['name'];
-        $ordering = $item['ordering'];
-        $status = $item['status'];
-        $picture = $item['id'];
+        $id = $item->id;
+        $name = $item->name;
+        $ordering = $item->ordering;
+        $status = $item->status;
+        $image = $item->getMedia('images')->first()->getUrl();
 
     @endphp
 
@@ -45,7 +45,8 @@
         <div class="container-xl">
             <div class="row row-deck row-cards">
                 <div class="col-md-12">
-                    <form class="card" method="POST" action="{{ route('admin.collections.update', ['item' => $item]) }}">
+                    <form class="card" method="POST" enctype="multipart/form-data"
+                        action="{{ route('admin.collections.update', ['item' => $item]) }}">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
@@ -71,13 +72,14 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Thumb</label>
+                                <label class="col-2 col-form-label">Image</label>
                                 <div class="col">
                                     <div class="input-group mb-2">
-                                        <button class="btn" type="button">Choose File</button>
-                                        <input type="text" class="form-control" placeholder="No file chosen">
+                                        <input type="file" class="form-control" id="image" name="image"
+                                            placeholder="No file chosen">
                                     </div>
-                                    <small class="form-hint">Chọn tệp hình ảnh.</small>
+                                    <img src="{{ $image }}" id="image-preview" alt="image-preview"
+                                        style="max-width: 200px">
                                 </div>
                             </div>
                         </div>

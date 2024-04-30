@@ -69,13 +69,13 @@
                                         @if (count($items) > 0)
                                             @foreach ($items as $key => $item)
                                                 @php
-                                                    $id = $item['id'];
+                                                    $id = $item->id;
                                                     $name = $item->name_short;
                                                     $description = $item->description_short;
-                                                    $categoryId = $item['category_article_id'];
-                                                    $ordering = $item['ordering'];
-                                                    $status = $item['status'];
-                                                    $picture = $item['id'];
+                                                    $categoryId = $item->category_article_id;
+                                                    $ordering = $item->ordering;
+                                                    $status = $item->status;
+                                                    $image = $item->getMedia('images')->first()->getUrl('webp');
                                                 @endphp
 
                                                 <tr>
@@ -84,13 +84,14 @@
                                                             aria-label="Select invoice">
                                                     </td>
                                                     <td><span class="text-secondary">{{ $id }}</span></td>
-                                                    <td width="15%">
+                                                    <td width="25%">
                                                         <p><strong>Tên:</strong> {!! $name !!}</p>
                                                         <p><strong>Mô tả:</strong>
                                                             {!! $description !!}
                                                         </p>
                                                     <td>
-                                                        {{ $picture }}
+                                                        <img src="{{ $image }}" alt="image"
+                                                            style="max-width: 100px">
                                                     </td>
                                                     </td>
                                                     <td>{{ $categoryId }}
@@ -118,7 +119,6 @@
                                             @endforeach
                                         @else
                                             {{-- @include('admin.templates.list_empty', ['colspan' => 6]) --}}
-                                            @dd('trống');
                                         @endif
                                     </tbody>
                                 </table>

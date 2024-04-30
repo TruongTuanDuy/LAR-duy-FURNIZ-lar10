@@ -88,13 +88,14 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Thumb</label>
+                                <label class="col-2 col-form-label">Image</label>
                                 <div class="col">
                                     <div class="input-group mb-2">
-                                        {{-- <button class="btn" type="button">Choose File</button> --}}
-                                        <input type="file" class="form-control" id="thumb" name="thumb"
+                                        <input type="file" class="form-control" id="image" name="image"
                                             placeholder="No file chosen">
                                     </div>
+                                    <img hidden src="" id="image-preview" alt="image-preview"
+                                        style="max-width: 200px">
                                 </div>
                             </div>
                         </div>

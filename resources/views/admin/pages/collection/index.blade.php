@@ -70,17 +70,15 @@
                                         @if (count($items) > 0)
                                             @foreach ($items as $key => $item)
                                                 @php
-                                                    $index = $key + 1;
-                                                    $class = $index % 2 == 0 ? 'even' : 'odd';
-                                                    $id = $item['id'];
+                                                    $id = $item->id;
                                                     $name = $item->name_short;
-                                                    $ordering = $item['ordering'];
-                                                    $status = $item['status'];
-                                                    $picture = $item['id'];
-                                                    $createdBy = $item['created_by'];
-                                                    $createdAt = $item['created_at'];
-                                                    $updatedBy = $item['updated_by'];
-                                                    $updatedAt = $item['updated_at'];
+                                                    $ordering = $item->ordering;
+                                                    $status = $item->status;
+                                                    $image = $item->getMedia('images')->first()->getUrl('thumb');
+                                                    $createdAt = $item->created_at;
+                                                    $createdBy = $item->created_by;
+                                                    $updatedBy = $item->updated_by;
+                                                    $updatedAt = $item->updated_at;
                                                 @endphp
 
                                                 <tr>
@@ -92,7 +90,8 @@
                                                     <td width="15%">{{ $name }}
                                                     </td>
                                                     <td>
-                                                        <span class="flag flag-xs flag-country-us me-2"></span>
+                                                        <img src="{{ $image }}" alt="image"
+                                                            style="max-width: 100px">
                                                     </td>
                                                     <td width="8%">
                                                         <x-admin.input-ordering :ordering="$ordering" />
@@ -123,7 +122,6 @@
                                             @endforeach
                                         @else
                                             {{-- @include('admin.templates.list_empty', ['colspan' => 6]) --}}
-                                            @dd('trống');
                                         @endif
                                     </tbody>
                                 </table>

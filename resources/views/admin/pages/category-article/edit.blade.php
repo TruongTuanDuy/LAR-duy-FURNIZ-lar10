@@ -33,12 +33,11 @@
 
     @php
         $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
-        $id = $item['id'];
-        $name = $item['name'];
-        $ordering = $item['ordering'];
-        $status = $item['status'];
-        $picture = $item['id'];
-
+        $id = $item->id;
+        $name = $item->name;
+        $ordering = $item->ordering;
+        $status = $item->status;
+        $picture = $item->id;
     @endphp
 
     <div class="page-body">

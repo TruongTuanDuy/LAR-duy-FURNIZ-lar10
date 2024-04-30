@@ -118,34 +118,28 @@ window.addEventListener("load", function () {
 
 });
 
-
-document.querySelector(".myTable").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const target = e.target;
-
-    if (target.classList.contains("form-delete")) {
-        if (confirm("ban co chac chan muon xoa khong?")) {
-            target.submit();
+myTable = document.querySelector(".myTable");
+if (myTable) {
+    myTable.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const target = e.target;
+        if (target.classList.contains("form-delete")) {
+            if (confirm("ban co chac chan muon xoa khong?")) {
+                target.submit();
+            }
         }
+    });
+}
+
+const image = document.getElementById('image');
+const imagePreview = document.getElementById('image-preview');
+image.addEventListener("change", function (e) {
+    if (e.target.files.length) {
+        const src = URL.createObjectURL(e.target.files[0]);
+        imagePreview.hidden = "";
+        imagePreview.src = src;
     }
 });
 
-document.addEventListener("click", function (e) {
-    // const target = e.target;
-    // e.preventDefault();
-
-    // if (target.classList.contains("form-delete")) {
-    //     if (confirm("ban co chac chan muon xoa khong?")) {
-    //         target.submit();
-    //     }
-    // }
-
-    // if (target.classList.contains('btn-delete')) {
-    //   target.querySelector('form').submit();
-    // } else if (target.classList.contains('btn-delete-icon')) {
-    //   target.nextElementSibling.submit();
-    // }
-});
 
 

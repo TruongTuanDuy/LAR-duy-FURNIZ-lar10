@@ -32,11 +32,11 @@
     </div>
 
     @php
-        $id = $item['id'];
-        $name = $item['name'];
-        $status = $item['status'];
+        $id = $item->id;
+        $name = $item->name;
+        $status = $item->status;
+        $parent = $item->parent_id;
         $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
-        $parent = $item['parent_id'];
         $parentList = $nodes;
 
     @endphp

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
 use App\Models\Collection as MainModel;
-use PHPUnit\TestRunner\TestResult\Collector;
 
 class CollectionController extends AdminController
 {
@@ -43,9 +42,9 @@ class CollectionController extends AdminController
      */
     public function store(Request $request)
     {
-        $this->params = $request->all();
-        $this->model->storeItem($this->params);
-        return redirect()->route('admin.collections.index');
+        $item = $this->model->storeItem($request->all());
+        $item->addMediaFromRequest('image')->toMediaCollection('images');
+        return redirect()->route('admin.collections.create');
     }
 
     /**
@@ -76,8 +75,12 @@ class CollectionController extends AdminController
     {
         $this->params = $request->all();
         $this->params['id'] = $id;
-        $this->model->updateItem($this->params);
-        return redirect()->route('admin.collections.index');
+        $item = $this->model->updateItem($this->params);
+        if ($request->hasFile('image')) {
+            $item->clearMediaCollection('images');
+            $item->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return redirect()->route('admin.collections.edit', ['item' => $id]);
     }
 
     /**
@@ -87,6 +90,6 @@ class CollectionController extends AdminController
     {
         $params["id"]             = $id;
         $this->model->deleteItem($params, ['task' => 'delete-item']);
-        return redirect()->route('admin.collections.index')->with('zvn_notify', 'Xóa phần tử thành công!');
+        return redirect()->route('admin.collections.index');
     }
 }
