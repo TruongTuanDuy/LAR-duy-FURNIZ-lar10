@@ -33,7 +33,7 @@
 
     @php
         $status = 1;
-        $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
+        // $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
         $parent = 1;
         $parentList = $nodes;
     @endphp
@@ -57,13 +57,14 @@
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Status</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$status" :select-list="$statusList" select-name="status" />
+                                    <x-admin.select :select-value="$status" select-name="status" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Parent</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$parent" :select-list="$parentList" select-name="parent_id" />
+                                    <x-admin.select-category :select-value="$parent" :select-list="$parentList" select-name="parent_id"
+                                        class-select2="select2" />
                                 </div>
                             </div>
                         </div>

@@ -41,27 +41,29 @@ class AdminController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    public function changeOrdering(Request $request)
     {
-        //
+        $params["currentOrdering"]  = $request->ordering;
+        $params["id"]             = $request->id;
+        $result = $this->model->changeItem($params, ['task' => 'change-ordering']);
+        echo json_encode($result);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function changeStatus(Request $request)
     {
-        //
+        $params["currentStatus"]  = $request->status;
+        $params["id"]             = $request->id;
+        // $params['controllerName']  = $this->controllerName;
+        $result = $this->model->changeItem($params, ['task' => 'change-status']);
+        echo json_encode($result);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function changeCategory(Request $request)
     {
-        //
+        $params["currentCategory"]      = $request->category;
+        $params["id"]                   = $request->id;
+        $result = $this->model->changeItem($params, ['task' => 'change-category']);
+        echo json_encode($result);
     }
 }

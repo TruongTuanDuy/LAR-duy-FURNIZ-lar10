@@ -77,6 +77,15 @@
                                                     $createdAt = $item->created_at;
                                                     $updatedBy = $item->updated_by;
                                                     $updatedAt = $item->updated_at;
+
+                                                    $linkOrdering = route('admin.category-articles.change-ordering', [
+                                                        'ordering' => 'value_new',
+                                                        'id' => $id,
+                                                    ]);
+                                                    $linkStatus = route('admin.category-articles.change-status', [
+                                                        'status' => $status,
+                                                        'id' => $id,
+                                                    ]);
                                                 @endphp
 
                                                 <tr>
@@ -88,10 +97,12 @@
                                                     <td width="25%">{{ $name }}
                                                     </td>
                                                     <td width="8%">
-                                                        <x-admin.input-ordering :ordering="$ordering" />
+                                                        <x-admin.input-ordering-ajax :ordering="$ordering" :link="$linkOrdering"
+                                                            :id="$id" />
                                                     </td>
                                                     <td>
-                                                        <x-admin.btn-status :status="$status" />
+                                                        <x-admin.btn-status :status="$status" :link="$linkStatus"
+                                                            :id="$id" />
                                                     </td>
                                                     <td>
                                                         <x-admin.item-history :by="$createdBy" :time="$createdAt" />

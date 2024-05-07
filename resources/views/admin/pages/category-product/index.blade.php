@@ -78,6 +78,12 @@
                                                     $createdAt = $item->created_at;
                                                     $updatedBy = $item->updated_by;
                                                     $updatedAt = $item->updated_at;
+
+                                                    $linkStatus = route('admin.category-products.change-status', [
+                                                        'status' => $status,
+                                                        'id' => $id,
+                                                    ]);
+
                                                 @endphp
 
                                                 <tr>
@@ -93,7 +99,8 @@
                                                         <x-admin.input-ordering :ordering="$ordering" />
                                                     </td>
                                                     <td>
-                                                        <x-admin.btn-status :status="$status" />
+                                                        <x-admin.btn-status :status="$status" :link="$linkStatus"
+                                                            :id="$id" />
                                                     </td>
                                                     <td>
                                                         <x-admin.item-history :by="$createdBy" :time="$createdAt" />

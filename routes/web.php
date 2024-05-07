@@ -1,7 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\FileManagerController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Admin\FileManagerController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CategoryArticleController;
+use App\Http\Controllers\Admin\CollectionController;
+use App\Http\Controllers\Admin\CategoryProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,12 +77,58 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
-    Route::resource('collections', CollectionController::class)->parameters(['collections' => 'item']);
-    Route::resource('categoryProducts', CategoryProductController::class)->parameters(['categoryProducts' => 'item']);
-    Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
+    $module = 'collections';
+    $controlerName = ucfirst(Str::singular($module)) . 'Controller';
+    Route::resource($module, $controlerName)->parameters([$module => 'item']);
+
+    $module = 'categoryProducts';
+    $controlerName = ucfirst(Str::singular($module)) . 'Controller';
+    Route::resource($module, $controlerName)->parameters([$module => 'item']);
+
+    $module = 'categoryArticles';
+    $controlerName = ucfirst(Str::singular($module)) . 'Controller';
+    Route::resource($module, $controlerName)->parameters([$module => 'item']);
+
+
+    Route::group([
+        'prefix' => 'articles',
+        'as' => 'articles.'
+    ], function () {
+        Route::get('change-ordering-{ordering}/{id}', 'ArticleController@changeOrdering')->name('change-ordering');
+        Route::get('change-status-{status}/{id}', [ArticleController::class, 'changeStatus'])->name('change-status');
+        Route::get('change-category-{category}/{id}', [ArticleController::class, 'changeCategory'])->name('change-category');
+    });
     Route::resource('articles', ArticleController::class)->parameters(['articles' => 'item']);
+
+
     // Route::resource('products', ProductController::class)->parameters(['products' => 'item']);
     Route::get('/file-manager', [FileManagerController::class, 'index'])->name('file-manager.index');
+
+
+
+    Route::group([
+        'prefix' => 'category-articles',
+        'as' => 'category-articles.'
+    ], function () {
+        Route::get('change-ordering-{ordering}/{id}', [CategoryArticleController::class, 'changeOrdering'])->name('change-ordering');
+        Route::get('change-status-{status}/{id}', [CategoryArticleController::class, 'changeStatus'])->name('change-status');
+    });
+
+    Route::group([
+        'prefix' => 'category-products',
+        'as' => 'category-products.'
+    ], function () {
+        Route::get('change-ordering-{ordering}/{id}', [CategoryProductController::class, 'changeOrdering'])->name('change-ordering');
+        Route::get('change-status-{status}/{id}', [CategoryProductController::class, 'changeStatus'])->name('change-status');
+    });
+
+    Route::group([
+        'prefix' => 'collections',
+        'as' => 'collections.'
+    ], function () {
+        Route::get('change-ordering-{ordering}/{id}', [CollectionController::class, 'changeOrdering'])->name('change-ordering');
+        Route::get('change-status-{status}/{id}', [CollectionController::class, 'changeStatus'])->name('change-status');
+    });
 });
 
 

@@ -35,8 +35,10 @@
         $categoryId = 3;
         $ordering = 10;
         $status = 1;
-        $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
-
+        // $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
+        // $statusKey = array_keys(Config::get('zvn.template.status'));
+        // $statusName = array_column(Config::get('zvn.template.status'), 'name');
+        // $statusList = array_combine($statusKey, $statusName);
     @endphp
 
     <div class="page-body">
@@ -71,14 +73,14 @@
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Category</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$categoryId" :select-list="$categoryList"
+                                    <x-admin.select-category :select-value="$categoryId" :select-list="$categoryList"
                                         select-name="category_article_id" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Status</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$status" :select-list="$statusList" select-name="status" />
+                                    <x-admin.select :select-value="$status" select-name="status" />
                                 </div>
                             </div>
                             <div class="mb-3 row">

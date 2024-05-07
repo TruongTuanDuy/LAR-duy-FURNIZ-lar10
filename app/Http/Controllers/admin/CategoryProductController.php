@@ -45,7 +45,7 @@ class CategoryProductController extends AdminController
     {
         $this->params = $request->all();
         $this->model->storeItem($this->params);
-        return redirect()->route('admin.categoryProducts.index');
+        return redirect()->route('admin.categoryProducts.create');
     }
 
     /**
@@ -59,38 +59,31 @@ class CategoryProductController extends AdminController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(MainModel $item)
     {
-        $item = MainModel::find($id);
-        $this->params['id'] = $id;
-        // dd($this->params);
-
         $nodes = $this->model->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
-        return view($this->pathViewController .  'edit', [
-            'params'        => $this->params,
-            'item'          => $item,
-            'nodes'         => $nodes,
-        ]);
+        return view($this->pathViewController .  'edit', compact(
+            'item',
+            'nodes',
+        ));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, MainModel $item)
     {
         $this->params = $request->all();
-        $this->params['id'] = $id;
-        $this->model->updateItem($this->params);
+        $this->model->updateItem($this->params, $item);
         return redirect()->route('admin.categoryProducts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(MainModel $item)
     {
-        $params["id"]             = $id;
-        $this->model->deleteItem($params, ['task' => 'delete-item']);
+        $this->model->deleteItem($item);
         return redirect()->route('admin.categoryProducts.index');
     }
 }

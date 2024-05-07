@@ -7,6 +7,8 @@
 {{-- <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.0.3/datatables.min.css" rel="stylesheet"> --}}
 <link href="{{ asset('admin/assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('admin/assets/libs/fontawesome/css/all.min.css') }}" rel="stylesheet" />
+{{-- <link href="{{ asset('admin/assets/libs/select2/dist/css/select2.min.css') }}" rel="stylesheet" /> --}}
+<link href="{{ asset('admin/assets/libs/select2/select2.min.css') }}" rel="stylesheet" />
 
 {{-- CSS Theme --}}
 <link href="{{ asset('admin/assets/css/tabler.min.css') }}" rel="stylesheet" />

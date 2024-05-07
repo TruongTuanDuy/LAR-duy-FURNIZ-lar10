@@ -59,9 +59,8 @@ class CollectionController extends AdminController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(MainModel $item)
     {
-        $item = MainModel::find($id);
         return view($this->pathViewController .  'edit', [
             'params'        => $this->params,
             'item'         => $item,
@@ -71,25 +70,23 @@ class CollectionController extends AdminController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, MainModel $item)
     {
         $this->params = $request->all();
-        $this->params['id'] = $id;
-        $item = $this->model->updateItem($this->params);
+        $item = $this->model->updateItem($this->params, $item);
         if ($request->hasFile('image')) {
             $item->clearMediaCollection('images');
             $item->addMediaFromRequest('image')->toMediaCollection('images');
         }
-        return redirect()->route('admin.collections.edit', ['item' => $id]);
+        return redirect()->route('admin.collections.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(MainModel $item)
     {
-        $params["id"]             = $id;
-        $this->model->deleteItem($params, ['task' => 'delete-item']);
+        $this->model->deleteItem($item);
         return redirect()->route('admin.collections.index');
     }
 }

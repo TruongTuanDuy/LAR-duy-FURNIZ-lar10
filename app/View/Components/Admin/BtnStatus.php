@@ -5,6 +5,8 @@ namespace App\View\Components\Admin;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+// use Config;
+
 
 class BtnStatus extends Component
 {
@@ -13,6 +15,9 @@ class BtnStatus extends Component
      */
     public function __construct(
         public $status,
+        public $link,
+        public $id,
+
     ) {
         //
     }

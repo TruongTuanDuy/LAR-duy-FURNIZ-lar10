@@ -2,24 +2,32 @@
 
 namespace App\Models;
 
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
 use App\Helpers\Template;
 
-class CategoryProduct extends Model
+class CategoryProduct extends Admin
 {
     use HasFactory;
     use NodeTrait;
 
-    protected $fillable = ['name', 'status', 'ordering'];
+    protected $fillable = [
+        'name',
+        'status',
+        'created_by',
+        'updated_by',
+        'parent_id',
+        '_lft',
+        '_rgt'
+    ];
 
-    public function getNameShortAttribute()
-    {
-        $string = $this->name;
-        $length = 30;
-        return Template::stringShorten($string, $length);
-    }
+    // public function getNameShortAttribute()
+    // {
+    //     $string = $this->name;
+    //     $length = 30;
+    //     return Template::stringShorten($string, $length);
+    // }
 
     public function listItems($params = null, $options = null)
     {
@@ -49,20 +57,5 @@ class CategoryProduct extends Model
         // $params['created_by']   = "duytruong";
         $parent = self::find($params['parent_id']);
         self::create($params, $parent);
-    }
-
-    public function updateItem($params = null, $options = null)
-    {
-        // $params['updated_by']   = "duytruong";
-        $parent = self::find($params['parent_id']);
-        $query = $current = self::find($params['id']);
-        $query->update($params);
-        if ($current->parent_id != $params['parent_id']) $query->prependToNode($parent)->save();
-    }
-
-    public function deleteItem($params = null, $options = null)
-    {
-        $node = self::find($params['id']);
-        $node->delete();
     }
 }

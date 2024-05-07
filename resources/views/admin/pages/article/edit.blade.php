@@ -32,9 +32,8 @@
     </div>
 
     @php
-        $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
         $id = $item->id;
-        $name = $item->name_short;
+        $name = $item->name;
         $description = $item->description;
         $content = $item->content;
         $categoryId = $item->category_article_id;
@@ -59,16 +58,12 @@
                                 <label class="col-2 col-form-label required">Name</label>
                                 <div class="col">
                                     <input type="text" class="form-control" name="name" value="{{ $name }}">
-                                    {{-- <textarea name="name" id="name" cols="100" rows="10">{{ $name }}</textarea> --}}
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Description</label>
                                 <div class="col">
-                                    {{-- <input type="text" class="form-control" name="description"
-                                        value="{{ $description }}"> --}}
                                     <textarea name="description" id="description" cols="100" rows="10">{{ $description }}</textarea>
-
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -80,14 +75,14 @@
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Category</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$categoryId" :select-list="$categoryList"
+                                    <x-admin.select-category :select-value="$categoryId" :select-list="$categoryList"
                                         select-name="category_article_id" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Status</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$status" :select-list="$statusList" select-name="status" />
+                                    <x-admin.select :select-value="$status" select-name="status" />
                                 </div>
                             </div>
                             <div class="mb-3 row">

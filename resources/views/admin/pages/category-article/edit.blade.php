@@ -32,12 +32,10 @@
     </div>
 
     @php
-        $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
         $id = $item->id;
         $name = $item->name;
         $ordering = $item->ordering;
         $status = $item->status;
-        $picture = $item->id;
     @endphp
 
     <div class="page-body">
@@ -61,24 +59,13 @@
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Status</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$status" :select-list="$statusList" select-name="status" />
+                                    <x-admin.select :select-value="$status" select-name="status" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Ordering</label>
                                 <div class="col">
-                                    {{-- <input type="number" class="form-control" value="{{ $ordering }}"> --}}
                                     <x-admin.input-ordering :ordering="$ordering" />
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Thumb</label>
-                                <div class="col">
-                                    <div class="input-group mb-2">
-                                        <button class="btn" type="button">Choose File</button>
-                                        <input type="text" class="form-control" placeholder="No file chosen">
-                                    </div>
-                                    <small class="form-hint">Chọn tệp hình ảnh.</small>
                                 </div>
                             </div>
                         </div>

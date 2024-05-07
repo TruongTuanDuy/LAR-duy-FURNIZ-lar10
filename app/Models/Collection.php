@@ -2,26 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use App\Helpers\Template;
 
-class Collection extends Model implements HasMedia
+class Collection extends Admin implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
 
     protected $fillable = ['name', 'status', 'ordering'];
-
-    public function getNameShortAttribute()
-    {
-        $string = $this->name;
-        $length = 30;
-        return Template::stringShorten($string, $length);
-    }
 
     public function registerMediaConversions(?Media $media = null): void
     {
@@ -45,24 +37,5 @@ class Collection extends Model implements HasMedia
         }
 
         return $result;
-    }
-
-    public function storeItem($params = null, $options = null)
-    {
-        return self::create($params);
-    }
-
-    public function updateItem($params = null, $options = null)
-    {
-        $item = self::find($params['id']);
-        $item->fill($params);
-        $item->save();
-        return $item;
-    }
-
-    public function deleteItem($params = null, $options = null)
-    {
-        $item = self::find($params['id']);
-        $item->delete();
     }
 }

@@ -76,6 +76,19 @@
                                                     $ordering = $item->ordering;
                                                     $status = $item->status;
                                                     $image = $item->getMedia('images')->first()->getUrl('webp');
+
+                                                    $linkOrdering = route('admin.articles.change-ordering', [
+                                                        'ordering' => 'value_new',
+                                                        'id' => $id,
+                                                    ]);
+                                                    $linkStatus = route('admin.articles.change-status', [
+                                                        'status' => $status,
+                                                        'id' => $id,
+                                                    ]);
+                                                    $linkCategory = route('admin.articles.change-category', [
+                                                        'category' => 'value_new',
+                                                        'id' => $id,
+                                                    ]);
                                                 @endphp
 
                                                 <tr>
@@ -94,13 +107,17 @@
                                                             style="max-width: 100px">
                                                     </td>
                                                     </td>
-                                                    <td>{{ $categoryId }}
+                                                    <td width="20%">
+                                                        <x-admin.select-category-ajax :select-value="$categoryId" :select-list="$categoryList"
+                                                            :link="$linkCategory" />
                                                     </td>
                                                     <td width="8%">
-                                                        <x-admin.input-ordering :ordering="$ordering" />
+                                                        <x-admin.input-ordering-ajax :ordering="$ordering" :link="$linkOrdering"
+                                                            :id="$id" />
                                                     </td>
                                                     <td>
-                                                        <x-admin.btn-status :status="$status" />
+                                                        <x-admin.btn-status :status="$status" :link="$linkStatus"
+                                                            :id="$id" />
                                                     </td>
                                                     <td class="text-end">
                                                         <a href="{{ route('admin.articles.edit', ['item' => $item]) }}"

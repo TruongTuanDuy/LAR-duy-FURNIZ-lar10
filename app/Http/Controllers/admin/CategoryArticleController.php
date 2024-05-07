@@ -11,7 +11,7 @@ class CategoryArticleController extends AdminController
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->pathViewController = 'admin.pages.category-article.';
+        $this->pathViewController = 'admin.categoryArticles.';
     }
 
     /**
@@ -42,7 +42,7 @@ class CategoryArticleController extends AdminController
     public function store(Request $request)
     {
         $this->model->storeItem($request->all());
-        return redirect()->route('admin.categoryArticles.index');
+        return redirect()->route("{$this->pathViewController}create");
     }
 
     /**
@@ -56,11 +56,9 @@ class CategoryArticleController extends AdminController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(MainModel $item)
     {
-        $item = MainModel::find($id);
         return view($this->pathViewController .  'edit', [
-            'params'        => $this->params,
             'item'         => $item,
         ]);
     }
@@ -68,21 +66,19 @@ class CategoryArticleController extends AdminController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, MainModel $item)
     {
         $this->params = $request->all();
-        $this->params['id'] = $id;
-        $this->model->updateItem($this->params);
-        return redirect()->route('admin.categoryArticles.index');
+        $this->model->updateItem($this->params, $item);
+        return redirect()->route("{$this->pathViewController}index");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(MainModel $item)
     {
-        $params["id"]             = $id;
-        $this->model->deleteItem($params);
-        return redirect()->route('admin.categoryArticles.index');
+        $this->model->deleteItem($item);
+        return redirect()->route("{$this->pathViewController}index");
     }
 }

@@ -34,7 +34,6 @@
     @php
         $ordering = 10;
         $status = 1;
-        $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
     @endphp
 
     <div class="page-body">
@@ -58,13 +57,12 @@
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Status</label>
                                 <div class="col">
-                                    <x-admin.item-select :select-value="$status" :select-list="$statusList" select-name="status" />
+                                    <x-admin.select :select-value="$status" select-name="status" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-2 col-form-label">Ordering</label>
                                 <div class="col">
-                                    {{-- <input type="number" class="form-control" value="{{ $ordering }}"> --}}
                                     <x-admin.input-ordering :ordering="$ordering" />
                                 </div>
                             </div>
