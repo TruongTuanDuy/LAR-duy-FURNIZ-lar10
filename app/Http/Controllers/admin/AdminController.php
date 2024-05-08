@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class AdminController extends Controller
 {
     protected $pathViewController = '';
-    protected $controllerName     = '';
-    protected $params             = [];
     protected $model;
+    protected $params             = [];
+    // protected $controllerName     = '';
 
     public function __construct()
     {

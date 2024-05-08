@@ -21,114 +21,118 @@ use App\Http\Controllers\Admin\CategoryProductController;
 
 Route::get('/', function () {
     // return view('welcome');
-    return view('furniz.pages.home.index');
+    return view('frontend.pages.home.index');
 });
 
 Route::get('/danh-muc-san-pham', function () {
-    return view('furniz.pages.category-product.index');
+    return view('frontend.pages.category-product.index');
 });
 
 Route::get('/san-pham', function () {
-    return view('furniz.pages.product.index');
+    return view('frontend.pages.product.index');
 });
 
 Route::get('/danh-muc-bai-viet', function () {
-    return view('furniz.pages.category-article.index');
+    return view('frontend.pages.category-article.index');
 });
 
 Route::get('/bai-viet', function () {
-    return view('furniz.pages.article.index');
+    return view('frontend.pages.article.index');
 });
 
 Route::get('/gio-hang', function () {
-    return view('furniz.pages.cart.index');
+    return view('frontend.pages.cart.index');
 });
 
 Route::get('/thanh-toan', function () {
-    return view('furniz.pages.order.checkout');
+    return view('frontend.pages.order.checkout');
 });
 
 Route::get('/dat-hang-thanh-cong', function () {
-    return view('furniz.pages.order.success');
+    return view('frontend.pages.order.success');
 });
 
 Route::get('/tra-cuu-don-hang', function () {
-    return view('furniz.pages.order.tracking');
+    return view('frontend.pages.order.tracking');
 });
 
 Route::get('/lien-he', function () {
-    return view('furniz.pages.contact-us.index');
+    return view('frontend.pages.contact-us.index');
 });
 
 Route::get('/bang-dieu-khien', function () {
-    return view('furniz.pages.dashboard.index');
+    return view('frontend.pages.dashboard.index');
 });
 
 Route::get('/gioi-thieu', function () {
-    return view('furniz.templates.about-us');
+    return view('frontend.templates.about-us');
 });
 
 Route::get('/404', function () {
-    return view('furniz.templates.404');
+    return view('frontend.templates.404');
 });
+
 
 Route::group([
     'namespace' => 'App\Http\Controllers\Admin',
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
-    $module = 'collections';
-    $controlerName = ucfirst(Str::singular($module)) . 'Controller';
-    Route::resource($module, $controlerName)->parameters([$module => 'item']);
 
-    $module = 'categoryProducts';
-    $controlerName = ucfirst(Str::singular($module)) . 'Controller';
-    Route::resource($module, $controlerName)->parameters([$module => 'item']);
+    $module = 'collections';
+    $controllerName = ucfirst(Str::singular($module)) . 'Controller';
+    Route::group([
+        'prefix' => $module,
+        'as' => $module,
+    ], function () use ($controllerName) {
+        Route::get('change-ordering-{ordering}/{id}', $controllerName . '@changeOrdering')->name('.change-ordering');
+        Route::get('change-status-{status}/{id}', $controllerName . '@changeStatus')->name('.change-status');
+    });
+    Route::resource($module, $controllerName)->parameters([$module => 'item']);
+
 
     $module = 'categoryArticles';
-    $controlerName = ucfirst(Str::singular($module)) . 'Controller';
-    Route::resource($module, $controlerName)->parameters([$module => 'item']);
-
-
+    $controllerName = ucfirst(Str::singular($module)) . 'Controller';
+    // Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
     Route::group([
-        'prefix' => 'articles',
-        'as' => 'articles.'
-    ], function () {
-        Route::get('change-ordering-{ordering}/{id}', 'ArticleController@changeOrdering')->name('change-ordering');
-        Route::get('change-status-{status}/{id}', [ArticleController::class, 'changeStatus'])->name('change-status');
-        Route::get('change-category-{category}/{id}', [ArticleController::class, 'changeCategory'])->name('change-category');
+        'prefix' => $module,
+        'as' => $module,
+    ], function () use ($controllerName) {
+        // Route::get('change-ordering-{ordering}/{id}', [CategoryArticleController::class, 'changeOrdering'])->name('change-ordering');
+        Route::get('change-ordering-{ordering}/{id}', $controllerName . '@changeOrdering')->name('.change-ordering');
+        Route::get('change-status-{status}/{id}', $controllerName . '@changeStatus')->name('.change-status');
     });
-    Route::resource('articles', ArticleController::class)->parameters(['articles' => 'item']);
+    Route::resource($module, $controllerName)->parameters([$module => 'item']);
+
+
+    $module = 'articles';
+    $controllerName = ucfirst(Str::singular($module)) . 'Controller';
+    Route::group([
+        'prefix' => $module,
+        'as' => $module,
+    ], function () use ($controllerName) {
+        Route::get('change-ordering-{ordering}/{id}', $controllerName . '@changeOrdering')->name('.change-ordering');
+        Route::get('change-status-{status}/{id}', $controllerName . '@changeStatus')->name('.change-status');
+        Route::get('change-category-{category}/{id}', $controllerName . '@changeCategory')->name('.change-category');
+    });
+    Route::resource($module, $controllerName)->parameters([$module => 'item']);
+
+
+    $module = 'categoryProducts';
+    $controllerName = ucfirst(Str::singular($module)) . 'Controller';
+    Route::group([
+        'prefix' => $module,
+        'as' => $module,
+    ], function () use ($controllerName) {
+        Route::get('change-ordering-{ordering}/{id}', $controllerName . '@changeOrdering')->name('.change-ordering');
+        Route::get('change-status-{status}/{id}', $controllerName . '@changeStatus')->name('.change-status');
+    });
+    Route::resource($module, $controllerName)->parameters([$module => 'item']);
 
 
     // Route::resource('products', ProductController::class)->parameters(['products' => 'item']);
-    Route::get('/file-manager', [FileManagerController::class, 'index'])->name('file-manager.index');
 
-
-
-    Route::group([
-        'prefix' => 'category-articles',
-        'as' => 'category-articles.'
-    ], function () {
-        Route::get('change-ordering-{ordering}/{id}', [CategoryArticleController::class, 'changeOrdering'])->name('change-ordering');
-        Route::get('change-status-{status}/{id}', [CategoryArticleController::class, 'changeStatus'])->name('change-status');
-    });
-
-    Route::group([
-        'prefix' => 'category-products',
-        'as' => 'category-products.'
-    ], function () {
-        Route::get('change-ordering-{ordering}/{id}', [CategoryProductController::class, 'changeOrdering'])->name('change-ordering');
-        Route::get('change-status-{status}/{id}', [CategoryProductController::class, 'changeStatus'])->name('change-status');
-    });
-
-    Route::group([
-        'prefix' => 'collections',
-        'as' => 'collections.'
-    ], function () {
-        Route::get('change-ordering-{ordering}/{id}', [CollectionController::class, 'changeOrdering'])->name('change-ordering');
-        Route::get('change-status-{status}/{id}', [CollectionController::class, 'changeStatus'])->name('change-status');
-    });
+    Route::get('/file-manager', 'FileManagerController@index')->name('file-manager.index');
 });
 
 

@@ -58,9 +58,7 @@ class CategoryArticleController extends AdminController
      */
     public function edit(MainModel $item)
     {
-        return view($this->pathViewController .  'edit', [
-            'item'         => $item,
-        ]);
+        return view($this->pathViewController .  'edit', compact('item'));
     }
 
     /**

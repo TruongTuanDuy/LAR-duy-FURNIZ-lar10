@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class FileManagerController extends Controller
 {
-    private $pathViewController = 'admin.pages.file-manager.';
+    private $pathViewController = 'admin.fileManager.';
 
     public function index(Request $request)
     {

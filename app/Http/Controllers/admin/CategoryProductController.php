@@ -11,7 +11,7 @@ class CategoryProductController extends AdminController
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->pathViewController = 'admin.pages.category-product.';
+        $this->pathViewController = 'admin.categoryProducts.';
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoryProductController extends AdminController
     {
         $this->params = $request->all();
         $this->model->storeItem($this->params);
-        return redirect()->route('admin.categoryProducts.create');
+        return redirect()->route("{$this->pathViewController}create");
     }
 
     /**
@@ -75,7 +75,7 @@ class CategoryProductController extends AdminController
     {
         $this->params = $request->all();
         $this->model->updateItem($this->params, $item);
-        return redirect()->route('admin.categoryProducts.index');
+        return redirect()->route("{$this->pathViewController}index");
     }
 
     /**
@@ -84,6 +84,6 @@ class CategoryProductController extends AdminController
     public function destroy(MainModel $item)
     {
         $this->model->deleteItem($item);
-        return redirect()->route('admin.categoryProducts.index');
+        return redirect()->route("{$this->pathViewController}index");
     }
 }

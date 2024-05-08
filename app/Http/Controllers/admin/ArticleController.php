@@ -12,7 +12,7 @@ class ArticleController extends AdminController
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->pathViewController = 'admin.pages.article.';
+        $this->pathViewController = 'admin.articles.';
     }
 
     /**
@@ -51,7 +51,7 @@ class ArticleController extends AdminController
     {
         $item = $this->model->storeItem($request->all());
         $item->addMediaFromRequest('image')->toMediaCollection('images');
-        return redirect()->route('admin.articles.create');
+        return redirect()->route("{$this->pathViewController}create");
     }
 
     /**
@@ -88,7 +88,7 @@ class ArticleController extends AdminController
             $item->clearMediaCollection('images');
             $item->addMediaFromRequest('image')->toMediaCollection('images');
         }
-        return redirect()->route('admin.articles.index');
+        return redirect()->route("{$this->pathViewController}index");
     }
 
     /**
@@ -97,6 +97,6 @@ class ArticleController extends AdminController
     public function destroy(MainModel $item)
     {
         $this->model->deleteItem($item);
-        return redirect()->route('admin.articles.index');
+        return redirect()->route("{$this->pathViewController}index");
     }
 }

@@ -11,7 +11,7 @@ class CollectionController extends AdminController
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->pathViewController = 'admin.pages.collection.';
+        $this->pathViewController = 'admin.collections.';
         // $this->controllerName     = 'collection';
     }
 
@@ -44,7 +44,7 @@ class CollectionController extends AdminController
     {
         $item = $this->model->storeItem($request->all());
         $item->addMediaFromRequest('image')->toMediaCollection('images');
-        return redirect()->route('admin.collections.create');
+        return redirect()->route("{$this->pathViewController}create");
     }
 
     /**
@@ -78,7 +78,7 @@ class CollectionController extends AdminController
             $item->clearMediaCollection('images');
             $item->addMediaFromRequest('image')->toMediaCollection('images');
         }
-        return redirect()->route('admin.collections.index');
+        return redirect()->route("{$this->pathViewController}index");
     }
 
     /**
@@ -87,6 +87,6 @@ class CollectionController extends AdminController
     public function destroy(MainModel $item)
     {
         $this->model->deleteItem($item);
-        return redirect()->route('admin.collections.index');
+        return redirect()->route("{$this->pathViewController}index");
     }
 }

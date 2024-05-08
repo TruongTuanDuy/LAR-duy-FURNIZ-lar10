@@ -9,6 +9,8 @@ class CategoryArticle extends Admin
 {
     use HasFactory;
 
+    protected $module = 'categoryArticles';
+
     protected $fillable = ['name', 'status', 'ordering'];
     // protected $guarded = [];
 

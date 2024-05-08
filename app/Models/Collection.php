@@ -13,6 +13,8 @@ class Collection extends Admin implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
+    protected $module = 'collections';
+
     protected $fillable = ['name', 'status', 'ordering'];
 
     public function registerMediaConversions(?Media $media = null): void

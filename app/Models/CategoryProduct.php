@@ -12,6 +12,8 @@ class CategoryProduct extends Admin
     use HasFactory;
     use NodeTrait;
 
+    protected $module = 'categoryProducts';
+
     protected $fillable = [
         'name',
         'status',
