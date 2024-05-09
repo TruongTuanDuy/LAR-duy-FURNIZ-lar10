@@ -15,7 +15,7 @@ class Article extends Admin implements HasMedia
 
     protected $module = 'articles';
 
-    protected $fillable = ['name', 'description', 'content', 'category_article_id', 'status', 'ordering'];
+    protected $fillable = ['name', 'description', 'content', 'category_id', 'status', 'ordering'];
 
     public function registerMediaConversions(?Media $media = null): void
     {
@@ -39,57 +39,4 @@ class Article extends Admin implements HasMedia
         }
         return $result;
     }
-
-    // public function changeItem($params = null, $options = null)
-    // {
-    //     if ($options['task'] == 'change-ordering') {
-    //         self::where('id', $params['id'])->update(['ordering' => $params['currentOrdering']]);
-    //         // $modifiedBy = session('userInfo')['username'];
-    //         // $modified = date('Y-m-d H:i:s');
-    //         // self::where('id', $params['id'])->update(['ordering' => $ordering, 'modified_by' => $modifiedBy, 'modified' => $modified]);
-    //         $result = [
-    //             // 'id' => $params['id'],
-    //             // 'modified' => Template::showItemHistory($modifiedBy, $modified),
-    //             'message' => config('zvn.notify.success.update'),
-    //         ];
-    //         return $result;
-    //     }
-
-    //     if ($options['task'] == 'change-status') {
-    //         $status = ($params['currentStatus'] == 1) ? 0 : 1;
-    //         self::where('id', $params['id'])->update(['status' => $status]);
-    //         $result = [
-    //             'statusObj' => [
-    //                 'name' => config('zvn.template.status.' . $status . '.name'),
-    //                 'class' => config('zvn.template.status.' . $status . '.class')
-    //             ],
-    //             'link' => route('admin.articles.change-status', ['status' => $status, 'id' => $params['id']]),
-    //             'message' => config('zvn.notify.success.update'),
-    //         ];
-    //         // $modifiedBy = session('userInfo')['username'];
-    //         // $modified = date('Y-m-d H:i:s');
-    //         // self::where('id', $params['id'])->update(['status' => $status, 'modified' => $modified, 'modified_by' => $modifiedBy]);
-    //         // $result = [
-    //         //     'id' => $params['id'],
-    //         //     'modified' => Template::showItemHistory($modifiedBy, $modified),
-    //         //     'status' => [
-    //         //         'name' => config('zvn.template.status.' . $status . '.name'),
-    //         //         'class' => config('zvn.template.status.' . $status . '.class')
-    //         //     ],
-    //         //     'link' => route($params['controllerName'] . '/status', ['status' => $status, 'id' => $params['id']]),
-    //         //     'message' => config('zvn.notify.success.update'),
-    //         // ];
-    //         return $result;
-    //     }
-
-    //     if ($options['task'] == 'change-category') {
-    //         self::where('id', $params['id'])->update(['category_article_id' => $params['currentCategory']]);
-    //         $result = [
-    //             // 'id' => $params['id'],
-    //             // 'modified' => Template::showItemHistory($modifiedBy, $modified),
-    //             'message' => config('zvn.notify.success.update'),
-    //         ];
-    //         return $result;
-    //     }
-    // }
 }

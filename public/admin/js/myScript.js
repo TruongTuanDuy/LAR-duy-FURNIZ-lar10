@@ -216,6 +216,7 @@ $(document).ready(function () {
         });
     }
 
+    // Show Notify
     function showNotify(element, message, style = 'success') {
         console.log(element);
         element.notify(message, {

@@ -278,7 +278,7 @@
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.categoryArticles.index') }}">
+                                <a class="dropdown-item" href="{{ route('admin.articleCategories.index') }}">
                                     Danh mục
                                 </a>
                                 <a class="dropdown-item" href="{{ route('admin.articles.index') }}">
@@ -331,10 +331,10 @@
                     <div class="dropdown-menu">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="{{ route('admin.categoryProducts.index') }}">
+                                <a class="dropdown-item" href="{{ route('admin.productCategories.index') }}">
                                     Danh mục
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.categoryProducts.index') }}">
+                                <a class="dropdown-item" href="{{ route('admin.productCategories.index') }}">
                                     Sản phẩm
                                 </a>
                             </div>

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CategoryArticle>
  */
-class ArticleFactory extends Factory
+class ArticleCategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,9 +19,6 @@ class ArticleFactory extends Factory
         return [
             //
             'name' => fake()->text($maxNbChars = 50),
-            'description' => fake()->text($maxNbChars = 100),
-            'content' => fake()->text($maxNbChars = 1000),
-            'category_id' => fake()->numberBetween($min = 1, $max = 20),
             'status' => fake()->randomElement([0, 1]),
             'ordering' => fake()->numberBetween($min = 1, $max = 10),
             'created_at' => fake()->dateTime(),

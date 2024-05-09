@@ -5,13 +5,13 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Bài viết
+                        Danh mục bài viết
                     </h2>
                 </div>
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('admin.articles.index') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.articleCategories.index') }}" class="btn btn-primary">
                             <span class="d-none d-sm-inline-block">
                                 Quay về
                             </span>
@@ -32,21 +32,15 @@
     </div>
 
     @php
-        $categoryId = 3;
         $ordering = 10;
         $status = 1;
-        // $statusList = ['0' => 'Chưa kích hoạt', '1' => 'Đã kích hoạt'];
-        // $statusKey = array_keys(Config::get('zvn.template.status'));
-        // $statusName = array_column(Config::get('zvn.template.status'), 'name');
-        // $statusList = array_combine($statusKey, $statusName);
     @endphp
 
     <div class="page-body">
         <div class="container-xl">
             <div class="row row-deck row-cards">
                 <div class="col-md-12">
-                    <form class="card" method="POST" enctype="multipart/form-data"
-                        action="{{ route('admin.articles.store') }}">
+                    <form class="card" method="POST" action="{{ route('admin.articleCategories.store') }}">
                         @csrf
                         <div class="card-header">
                             <h3 class="card-title">Thêm mới</h3>
@@ -56,25 +50,6 @@
                                 <label class="col-2 col-form-label required">Name</label>
                                 <div class="col">
                                     <input type="text" class="form-control" name="name">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Description</label>
-                                <div class="col">
-                                    <input type="text" class="form-control" name="description">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Content</label>
-                                <div class="col">
-                                    <textarea name="content" id="content" cols="100" rows="10"></textarea>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Category</label>
-                                <div class="col">
-                                    <x-admin.select-category :select-value="$categoryId" :select-list="$categoryList"
-                                        select-name="category_id" />
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -89,23 +64,11 @@
                                     <x-admin.input-ordering :ordering="$ordering" />
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-2 col-form-label">Image</label>
-                                <div class="col">
-                                    <div class="input-group mb-2">
-                                        <input type="file" class="form-control" id="image" name="image"
-                                            placeholder="No file chosen">
-                                    </div>
-                                    <img hidden src="" id="image-preview" alt="image-preview"
-                                        style="max-width: 200px">
-                                </div>
-                            </div>
                         </div>
                         <div class="card-footer text-start">
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

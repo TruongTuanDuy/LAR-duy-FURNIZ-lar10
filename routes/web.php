@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\ArticleController;
-use App\Http\Controllers\Admin\CategoryArticleController;
+use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\CollectionController;
-use App\Http\Controllers\Admin\CategoryProductController;
+use App\Http\Controllers\Admin\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ Route::group([
     Route::resource($module, $controllerName)->parameters([$module => 'item']);
 
 
-    $module = 'categoryArticles';
+    $module = 'articleCategories';
     $controllerName = ucfirst(Str::singular($module)) . 'Controller';
     // Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
     Route::group([
@@ -118,7 +118,7 @@ Route::group([
     Route::resource($module, $controllerName)->parameters([$module => 'item']);
 
 
-    $module = 'categoryProducts';
+    $module = 'productCategories';
     $controllerName = ucfirst(Str::singular($module)) . 'Controller';
     Route::group([
         'prefix' => $module,

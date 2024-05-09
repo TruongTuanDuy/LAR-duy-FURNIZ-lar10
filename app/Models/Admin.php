@@ -68,7 +68,7 @@ class Admin extends Model
         }
 
         if ($options['task'] == 'change-category') {
-            self::where('id', $params['id'])->update(['category_article_id' => $params['currentCategory']]);
+            self::where('id', $params['id'])->update(['category_id' => $params['currentCategory']]);
             $result = [
                 // 'id' => $params['id'],
                 // 'modified' => Template::showItemHistory($modifiedBy, $modified),

@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Collection;
-use App\Models\CategoryArticle;
+use App\Models\ArticleCategory;
 use App\Models\Article;
 
 
@@ -24,17 +24,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Collection::factory(20)->create();
-        CategoryArticle::factory(20)->create();
-        Article::factory(20)->create();
+        // Collection::factory(20)->create();
+        ArticleCategory::factory(10)->create();
+        // Article::factory(20)->create();
 
-        DB::table('category_products')->insert([
+        DB::table('product_categories')->insert([
             'id' => 1,
             'name' => 'Root',
             '_lft' => 1,
             '_rgt' => 2,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            // 'created_at' => date('Y-m-d H:i:s'),
+            // 'updated_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }

@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
-use App\Models\Article as MainModel;
-use App\Models\ArticleCategory;
+use App\Models\ArticleCategory as MainModel;
 
-class ArticleController extends AdminController
+class ArticleCategoryController extends AdminController
 {
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->pathViewController = 'admin.articles.';
+        $this->pathViewController = 'admin.articleCategories.';
     }
 
     /**
@@ -21,13 +20,9 @@ class ArticleController extends AdminController
     public function index()
     {
         $items  = $this->model->listItems($this->params, ['task'  => 'admin-list-items']);
-        $categoryArticle = new ArticleCategory();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-category']);
-
         return view($this->pathViewController .  'index', [
             'params'    => $this->params,
             'items'     => $items,
-            'categoryList' => $categoryList
         ]);
     }
 
@@ -36,11 +31,8 @@ class ArticleController extends AdminController
      */
     public function create()
     {
-        $categoryArticle = new ArticleCategory();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-category']);
         return view($this->pathViewController .  'create', [
             'params'        => $this->params,
-            'categoryList' => $categoryList
         ]);
     }
 
@@ -49,8 +41,7 @@ class ArticleController extends AdminController
      */
     public function store(Request $request)
     {
-        $item = $this->model->storeItem($request->all());
-        $item->addMediaFromRequest('image')->toMediaCollection('images');
+        $this->model->storeItem($request->all());
         return redirect()->route("{$this->pathViewController}create");
     }
 
@@ -67,14 +58,7 @@ class ArticleController extends AdminController
      */
     public function edit(MainModel $item)
     {
-        $categoryArticle = new ArticleCategory();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-category']);
-
-        return view($this->pathViewController .  'edit', [
-            'params'        => $this->params,
-            'item'         => $item,
-            'categoryList' => $categoryList
-        ]);
+        return view($this->pathViewController .  'edit', compact('item'));
     }
 
     /**
@@ -83,11 +67,7 @@ class ArticleController extends AdminController
     public function update(Request $request, MainModel $item)
     {
         $this->params = $request->all();
-        $item = $this->model->updateItem($this->params, $item);
-        if ($request->hasFile('image')) {
-            $item->clearMediaCollection('images');
-            $item->addMediaFromRequest('image')->toMediaCollection('images');
-        }
+        $this->model->updateItem($this->params, $item);
         return redirect()->route("{$this->pathViewController}index");
     }
 

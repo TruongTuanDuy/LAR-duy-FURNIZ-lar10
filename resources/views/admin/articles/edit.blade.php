@@ -36,7 +36,7 @@
         $name = $item->name;
         $description = $item->description;
         $content = $item->content;
-        $categoryId = $item->category_article_id;
+        $categoryId = $item->category_id;
         $ordering = $item->ordering;
         $status = $item->status;
         $image = $item->getMedia('images')->first()->getUrl();
@@ -76,7 +76,7 @@
                                 <label class="col-2 col-form-label">Category</label>
                                 <div class="col">
                                     <x-admin.select-category :select-value="$categoryId" :select-list="$categoryList"
-                                        select-name="category_article_id" />
+                                        select-name="category_id" />
                                 </div>
                             </div>
                             <div class="mb-3 row">

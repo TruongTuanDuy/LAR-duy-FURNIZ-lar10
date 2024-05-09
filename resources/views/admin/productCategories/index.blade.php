@@ -5,13 +5,13 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Bài viết
+                        Danh mục sản phẩm
                     </h2>
                 </div>
                 <!-- Page title actions -->
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
-                        <a href="{{ route('admin.articles.create') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.productCategories.create') }}" class="btn btn-primary">
                             <span class="d-none d-sm-inline-block">
                                 Thêm mới
                             </span>
@@ -57,11 +57,11 @@
                                                     <path d="M6 15l6 -6l6 6" />
                                                 </svg>
                                             </th>
-                                            <th>Thông tin</th>
-                                            <th>Hình ảnh</th>
-                                            <th>Danh mục</th>
+                                            <th>Tên</th>
                                             <th>Sắp xếp</th>
                                             <th>Trạng thái</th>
+                                            <th>Tạo mới</th>
+                                            <th>Chỉnh sửa</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
@@ -70,25 +70,20 @@
                                             @foreach ($items as $key => $item)
                                                 @php
                                                     $id = $item->id;
+                                                    $level = $item->depth;
                                                     $name = $item->name_short;
-                                                    $description = $item->description_short;
-                                                    $categoryId = $item->category_id;
-                                                    $ordering = $item->ordering;
                                                     $status = $item->status;
-                                                    $image = $item->getMedia('images')->first()->getUrl('webp');
+                                                    $ordering = $item->ordering;
+                                                    $createdBy = $item->created_by;
+                                                    $createdAt = $item->created_at;
+                                                    $updatedBy = $item->updated_by;
+                                                    $updatedAt = $item->updated_at;
 
-                                                    $linkOrdering = route('admin.articles.change-ordering', [
-                                                        'ordering' => 'value_new',
-                                                        'id' => $id,
-                                                    ]);
-                                                    $linkStatus = route('admin.articles.change-status', [
+                                                    $linkStatus = route('admin.productCategories.change-status', [
                                                         'status' => $status,
                                                         'id' => $id,
                                                     ]);
-                                                    $linkCategory = route('admin.articles.change-category', [
-                                                        'category' => 'value_new',
-                                                        'id' => $id,
-                                                    ]);
+
                                                 @endphp
 
                                                 <tr>
@@ -98,33 +93,27 @@
                                                     </td>
                                                     <td><span class="text-secondary">{{ $id }}</span></td>
                                                     <td width="25%">
-                                                        <p><strong>Tên:</strong> {!! $name !!}</p>
-                                                        <p><strong>Mô tả:</strong>
-                                                            {!! $description !!}
-                                                        </p>
-                                                    <td>
-                                                        <img src="{{ $image }}" alt="image"
-                                                            style="max-width: 100px">
-                                                    </td>
-                                                    </td>
-                                                    <td width="20%">
-                                                        <x-admin.select-category-ajax :select-value="$categoryId" :select-list="$categoryList"
-                                                            :link="$linkCategory" />
+                                                        <x-admin.item-name-level :level="$level" :name="$name" />
                                                     </td>
                                                     <td width="8%">
-                                                        <x-admin.input-ordering-ajax :ordering="$ordering" :link="$linkOrdering"
-                                                            :id="$id" />
+                                                        <x-admin.input-ordering :ordering="$ordering" />
                                                     </td>
                                                     <td>
                                                         <x-admin.btn-status :status="$status" :link="$linkStatus"
                                                             :id="$id" />
                                                     </td>
+                                                    <td>
+                                                        <x-admin.item-history :by="$createdBy" :time="$createdAt" />
+                                                    </td>
+                                                    <td>
+                                                        <x-admin.item-history :by="$updatedBy" :time="$updatedAt" />
+                                                    </td>
                                                     <td class="text-end">
-                                                        <a href="{{ route('admin.articles.edit', ['item' => $item]) }}"
+                                                        <a href="{{ route('admin.productCategories.edit', ['item' => $item]) }}"
                                                             class="btn btn-orange btn-icon">
                                                             <i class="fa-regular fa-pen-to-square"></i></a>
                                                         <form class="d-inline-block form-delete" method="POST"
-                                                            action="{{ route('admin.articles.destroy', ['item' => $item]) }}">
+                                                            action="{{ route('admin.productCategories.destroy', ['item' => $item]) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-red btn-icon btn-delete">
@@ -136,6 +125,7 @@
                                             @endforeach
                                         @else
                                             {{-- @include('admin.templates.list_empty', ['colspan' => 6]) --}}
+                                            {{-- @dd('trống'); --}}
                                         @endif
                                     </tbody>
                                 </table>
