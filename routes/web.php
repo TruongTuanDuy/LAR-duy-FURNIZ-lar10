@@ -126,13 +126,14 @@ Route::group([
     ], function () use ($controllerName) {
         Route::get('change-ordering-{ordering}/{id}', $controllerName . '@changeOrdering')->name('.change-ordering');
         Route::get('change-status-{status}/{id}', $controllerName . '@changeStatus')->name('.change-status');
+        Route::post('update-tree', $controllerName . '@updateTree')->name('.updateTree');
     });
     Route::resource($module, $controllerName)->parameters([$module => 'item']);
 
 
     // Route::resource('products', ProductController::class)->parameters(['products' => 'item']);
 
-    Route::get('/file-manager', 'FileManagerController@index')->name('file-manager.index');
+    Route::get('file-manager', 'FileManagerController@index')->name('fileManager.index');
 });
 
 

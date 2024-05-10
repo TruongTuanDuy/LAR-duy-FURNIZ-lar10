@@ -1,8 +1,28 @@
 $(document).ready(function () {
 
+    let categoryTree = $('#nestable-category');
+    // let outputNestable=$('#output');
+    categoryTree.nestable({ /* config options */ }).on('change', function () {
+        let dataSend = categoryTree.nestable('serialize');
+        $.ajax({
+            type: "POST",
+            url: categoryTree.data('url'),
+            data: {
+                data: dataSend,
+                _token: $('meta[name="csrf-token"]').attr("content")
+            },
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+            },
+        });
+    });
+
+
     new DataTable("#myDataTable");
 
     $('.select2').select2();
+
 
 
     // Ajax Change Ordering
@@ -72,7 +92,7 @@ $(document).ready(function () {
         });
     });
 
-    // Delete Row Index
+    // Delete Row Index ĐANG CÓ VẤN ĐỀ???????????????
     myTable = document.querySelector(".myTable");
     if (myTable) {
         myTable.addEventListener("submit", function (e) {
@@ -216,6 +236,7 @@ $(document).ready(function () {
         });
     }
 
+
     // Show Notify
     function showNotify(element, message, style = 'success') {
         console.log(element);
@@ -224,8 +245,6 @@ $(document).ready(function () {
             className: style,
         });
     };
-
-
 });
 
 

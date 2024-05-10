@@ -36,7 +36,7 @@ class ProductCategory extends Admin
         $result = null;
 
         if ($options['task'] == "admin-list-items") {
-            $result = self::withDepth()->having('depth', '>', 0)->defaultOrder()->get()->toFlatTree();
+            $result = self::withDepth()->having('depth', '>', 0)->defaultOrder()->get()->toTree();
         }
 
         if ($options['task'] == "admin-list-items-in-select-box") {

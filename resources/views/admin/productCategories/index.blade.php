@@ -39,99 +39,80 @@
                         <div class="card-header">
                             <h3 class="card-title">Danh sách</h3>
                         </div>
-                        <div class="card-body border-bottom py-3">
-                            <div class="table-responsive">
-                                <table class="table card-table table-vcenter text-nowrap datatable myTable"
-                                    id="myDataTable">
-                                    <thead>
-                                        <tr>
-                                            <th class="w-1"><input class="form-check-input m-0 align-middle"
-                                                    type="checkbox" aria-label="Select all invoices"></th>
-                                            <th class="w-1">ID
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm icon-thick"
-                                                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                                                    stroke="currentColor" fill="none" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M6 15l6 -6l6 6" />
-                                                </svg>
-                                            </th>
-                                            <th>Tên</th>
-                                            <th>Sắp xếp</th>
-                                            <th>Trạng thái</th>
-                                            <th>Tạo mới</th>
-                                            <th>Chỉnh sửa</th>
-                                            <th>Hành động</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (count($items) > 0)
-                                            @foreach ($items as $key => $item)
-                                                @php
-                                                    $id = $item->id;
-                                                    $level = $item->depth;
-                                                    $name = $item->name_short;
-                                                    $status = $item->status;
-                                                    $ordering = $item->ordering;
-                                                    $createdBy = $item->created_by;
-                                                    $createdAt = $item->created_at;
-                                                    $updatedBy = $item->updated_by;
-                                                    $updatedAt = $item->updated_at;
+                        <div class="card-body border-bottom py-3" style="width:2000px">
 
-                                                    $linkStatus = route('admin.productCategories.change-status', [
-                                                        'status' => $status,
-                                                        'id' => $id,
-                                                    ]);
-
-                                                @endphp
-
-                                                <tr>
-                                                    <td>
-                                                        <input class="form-check-input m-0 align-middle" type="checkbox"
-                                                            aria-label="Select invoice">
-                                                    </td>
-                                                    <td><span class="text-secondary">{{ $id }}</span></td>
-                                                    <td width="25%">
-                                                        <x-admin.item-name-level :level="$level" :name="$name" />
-                                                    </td>
-                                                    <td width="8%">
-                                                        <x-admin.input-ordering :ordering="$ordering" />
-                                                    </td>
-                                                    <td>
-                                                        <x-admin.btn-status :status="$status" :link="$linkStatus"
-                                                            :id="$id" />
-                                                    </td>
-                                                    <td>
-                                                        <x-admin.item-history :by="$createdBy" :time="$createdAt" />
-                                                    </td>
-                                                    <td>
-                                                        <x-admin.item-history :by="$updatedBy" :time="$updatedAt" />
-                                                    </td>
-                                                    <td class="text-end">
-                                                        <a href="{{ route('admin.productCategories.edit', ['item' => $item]) }}"
-                                                            class="btn btn-orange btn-icon">
-                                                            <i class="fa-regular fa-pen-to-square"></i></a>
-                                                        <form class="d-inline-block form-delete" method="POST"
-                                                            action="{{ route('admin.productCategories.destroy', ['item' => $item]) }}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-red btn-icon btn-delete">
-                                                                <i class="fa-regular fa-trash-can btn-delete-icon"></i>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            {{-- @include('admin.templates.list_empty', ['colspan' => 6]) --}}
-                                            {{-- @dd('trống'); --}}
-                                        @endif
-                                    </tbody>
-                                </table>
+                            <div class="dd">
+                                <ol class="dd-list">
+                                    <li class="dd-item" style="display:flex; justify-content:space-between">
+                                        <div class="dd-handle"><input class="form-check-input m-0 align-middle"
+                                                type="checkbox" aria-label="Select all invoices"></div>
+                                        <div class="dd-handle">ID</div>
+                                        <div class="dd-handle">Tên</div>
+                                        <div class="dd-handle">Trạng thái</div>
+                                        <div class="dd-handle">Tạo mới</div>
+                                        <div class="dd-handle">Chỉnh sửa</div>
+                                        <div class="dd-handle">Hành động</div>
+                                    </li>
+                                </ol>
                             </div>
-                        </div>
+                            @if (count($items) > 0)
+                                <div class="dd" id="nestable-category"
+                                    data-url="{{ route('admin.productCategories.updateTree') }}">
+                                    <ol class="dd-list">
+                                        @foreach ($items as $key => $item)
+                                            @php
+                                                // $id = $item->id;
+                                                // $level = $item->depth;
+                                                // $name = $item->name_short;
+                                                // $status = $item->status;
+                                                // $createdBy = $item->created_by;
+                                                // $createdAt = $item->created_at;
+                                                // $updatedBy = $item->updated_by;
+                                                // $updatedAt = $item->updated_at;
 
+                                                $linkStatus = route('admin.productCategories.change-status', [
+                                                    'status' => $item->status,
+                                                    'id' => $item->id,
+                                                ]);
+
+                                            @endphp
+                                            @include('admin.productCategories.index_item', [
+                                                'item' => $item,
+                                            ])
+                                            {{-- <li class="dd-item" style="display:flex; justify-content:space-between"
+                                                data-id="{{ $id }}">
+                                                <div class="dd-handle"><input class="form-check-input m-0 align-middle"
+                                                        type="checkbox" aria-label="Select all invoices"></div>
+                                                <div class="dd-handle">{{ $id }}</div>
+                                                <div class="dd-handle"><x-admin.item-name-level :level="$level"
+                                                        :name="$name" /></div>
+                                                <div class="dd-handle"><x-admin.btn-status :status="$status"
+                                                        :link="$linkStatus" :id="$id" /></div>
+                                                <div class="dd-handle"><x-admin.item-history :by="$createdBy"
+                                                        :time="$createdAt" /></div>
+                                                <div class="dd-handle"> <x-admin.item-history :by="$updatedBy"
+                                                        :time="$updatedAt" /></div>
+                                                <div class="dd-handle"> <a
+                                                        href="{{ route('admin.productCategories.edit', ['item' => $item]) }}"
+                                                        class="btn btn-orange btn-icon">
+                                                        <i class="fa-regular fa-pen-to-square"></i></a>
+                                                    <form class="d-inline-block form-delete" method="POST"
+                                                        action="{{ route('admin.productCategories.destroy', ['item' => $item]) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-red btn-icon btn-delete">
+                                                            <i class="fa-regular fa-trash-can btn-delete-icon"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </li> --}}
+                                        @endforeach
+                                    </ol>
+                                </div>
+                            @else
+                            @endif
+
+                        </div>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,13 @@ class ProductCategoryController extends AdminController
         $this->pathViewController = 'admin.productCategories.';
     }
 
+    public function updateTree(Request $request)
+    {
+        $data = $request->data;
+        $root = MainModel::find(1);
+        MainModel::rebuildSubtree($root, $data);
+        return response()->json($data);
+    }
     /**
      * Display a listing of the resource.
      */

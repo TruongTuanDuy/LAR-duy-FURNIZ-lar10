@@ -6,6 +6,7 @@
     {{-- <script src="{{ asset('admin/assets/libs/select2/dist/js/select2.min.js') }}"></script> --}}
     <script src="{{ asset('admin/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ asset('admin/assets/libs/notifyjs/notify.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/nestable2/jquery.nestable.min.js') }}"></script>
 
     <!-- Tabler Core -->
     <script src="{{ asset('admin/assets/js/tabler.min.js') }}" defer></script>
