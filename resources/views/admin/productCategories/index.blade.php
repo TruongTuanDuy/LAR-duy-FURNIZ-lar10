@@ -31,6 +31,37 @@
         </div>
     </div>
 
+    <!-- nestedDemo -->
+    <div id="nestedDemo" class="list-group col nested-sortable" draggable="true">ABC
+        <div class="list-group-item nested-1">Item 1.1
+            <div class="list-group nested-sortable">
+                <div class="list-group-item nested-2">Item 2.1</div>
+                <div class="list-group-item nested-2">Item 2.2
+                    <div class="list-group nested-sortable">
+                        <div class="list-group-item nested-3">Item 3.1</div>
+                        <div class="list-group-item nested-3">Item 3.2</div>
+                        <div class="list-group-item nested-3">Item 3.3</div>
+                        <div class="list-group-item nested-3">Item 3.4</div>
+                    </div>
+                </div>
+                <div class="list-group-item nested-2">Item 2.3</div>
+                <div class="list-group-item nested-2">Item 2.4</div>
+            </div>
+        </div>
+        <div class="list-group-item nested-1">Item 1.2</div>
+        <div class="list-group-item nested-1">Item 1.3</div>
+        <div class="list-group-item nested-1">Item 1.4
+            <div class="list-group nested-sortable">
+                <div class="list-group-item nested-2">Item 2.1</div>
+                <div class="list-group-item nested-2">Item 2.2</div>
+                <div class="list-group-item nested-2">Item 2.3</div>
+                <div class="list-group-item nested-2">Item 2.4</div>
+            </div>
+        </div>
+        <div class="list-group-item nested-1">Item 1.5</div>
+    </div>
+
+
     <div class="page-body">
         <div class="container-xl">
             <div class="row row-deck row-cards">
@@ -55,62 +86,28 @@
                                     </li>
                                 </ol>
                             </div>
-                            @if (count($items) > 0)
-                                <div class="dd" id="nestable-category"
-                                    data-url="{{ route('admin.productCategories.updateTree') }}">
-                                    <ol class="dd-list">
+
+
+
+                            {{-- @if (count($items) > 0)
+                                <div id="nestable-category" class="dd">
+                                    <ol id="sortable-list" class="list-group"
+                                        data-url="{{ route('admin.productCategories.updateTree') }}">
                                         @foreach ($items as $key => $item)
                                             @php
-                                                // $id = $item->id;
-                                                // $level = $item->depth;
-                                                // $name = $item->name_short;
-                                                // $status = $item->status;
-                                                // $createdBy = $item->created_by;
-                                                // $createdAt = $item->created_at;
-                                                // $updatedBy = $item->updated_by;
-                                                // $updatedAt = $item->updated_at;
-
                                                 $linkStatus = route('admin.productCategories.change-status', [
                                                     'status' => $item->status,
                                                     'id' => $item->id,
                                                 ]);
-
                                             @endphp
                                             @include('admin.productCategories.index_item', [
                                                 'item' => $item,
                                             ])
-                                            {{-- <li class="dd-item" style="display:flex; justify-content:space-between"
-                                                data-id="{{ $id }}">
-                                                <div class="dd-handle"><input class="form-check-input m-0 align-middle"
-                                                        type="checkbox" aria-label="Select all invoices"></div>
-                                                <div class="dd-handle">{{ $id }}</div>
-                                                <div class="dd-handle"><x-admin.item-name-level :level="$level"
-                                                        :name="$name" /></div>
-                                                <div class="dd-handle"><x-admin.btn-status :status="$status"
-                                                        :link="$linkStatus" :id="$id" /></div>
-                                                <div class="dd-handle"><x-admin.item-history :by="$createdBy"
-                                                        :time="$createdAt" /></div>
-                                                <div class="dd-handle"> <x-admin.item-history :by="$updatedBy"
-                                                        :time="$updatedAt" /></div>
-                                                <div class="dd-handle"> <a
-                                                        href="{{ route('admin.productCategories.edit', ['item' => $item]) }}"
-                                                        class="btn btn-orange btn-icon">
-                                                        <i class="fa-regular fa-pen-to-square"></i></a>
-                                                    <form class="d-inline-block form-delete" method="POST"
-                                                        action="{{ route('admin.productCategories.destroy', ['item' => $item]) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-red btn-icon btn-delete">
-                                                            <i class="fa-regular fa-trash-can btn-delete-icon"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </li> --}}
                                         @endforeach
                                     </ol>
                                 </div>
                             @else
-                            @endif
+                            @endif --}}
 
                         </div>
                     </div>

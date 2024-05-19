@@ -93,7 +93,6 @@ Route::group([
 
     $module = 'articleCategories';
     $controllerName = ucfirst(Str::singular($module)) . 'Controller';
-    // Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
     Route::group([
         'prefix' => $module,
         'as' => $module,
@@ -102,10 +101,23 @@ Route::group([
         Route::get('change-ordering-{ordering}/{id}', $controllerName . '@changeOrdering')->name('.change-ordering');
         Route::get('change-status-{status}/{id}', $controllerName . '@changeStatus')->name('.change-status');
     });
+    // Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
     Route::resource($module, $controllerName)->parameters([$module => 'item']);
 
 
     $module = 'articles';
+    $controllerName = ucfirst(Str::singular($module)) . 'Controller';
+    Route::group([
+        'prefix' => $module,
+        'as' => $module,
+    ], function () use ($controllerName) {
+        Route::get('change-ordering-{ordering}/{id}', $controllerName . '@changeOrdering')->name('.change-ordering');
+        Route::get('change-status-{status}/{id}', $controllerName . '@changeStatus')->name('.change-status');
+        Route::get('change-category-{category}/{id}', $controllerName . '@changeCategory')->name('.change-category');
+    });
+    Route::resource($module, $controllerName)->parameters([$module => 'item']);
+
+    $module = 'products';
     $controllerName = ucfirst(Str::singular($module)) . 'Controller';
     Route::group([
         'prefix' => $module,

@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
-use App\Models\Article as MainModel;
-use App\Models\ArticleCategory;
+use App\Models\Product as MainModel;
+use App\Models\ProductCategory;
+use App\Models\Collection;
 
-class ArticleController extends AdminController
+class ProductController extends AdminController
 {
     public function __construct()
     {
         $this->model = new MainModel();
-        $this->pathViewController = 'admin.articles.';
+        $this->pathViewController = 'admin.products.';
+        $this->params['category_root'] = FALSE;
     }
 
     /**
@@ -20,9 +22,10 @@ class ArticleController extends AdminController
      */
     public function index()
     {
+        // dd($this->params);
         $items  = $this->model->listItems($this->params, ['task'  => 'admin-list-items']);
-        $categoryArticle = new ArticleCategory();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
+        $productCategory = new ProductCategory();
+        $categoryList = $productCategory->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
 
         return view($this->pathViewController .  'index', [
             'params'    => $this->params,
@@ -36,8 +39,8 @@ class ArticleController extends AdminController
      */
     public function create()
     {
-        $categoryArticle = new ArticleCategory();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
+        $productCategory = new ProductCategory();
+        $categoryList = $productCategory->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
         return view($this->pathViewController .  'create', [
             'params'        => $this->params,
             'categoryList' => $categoryList
@@ -67,8 +70,8 @@ class ArticleController extends AdminController
      */
     public function edit(MainModel $item)
     {
-        $categoryArticle = new ArticleCategory();
-        $categoryList = $categoryArticle->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
+        $productCategory = new ProductCategory();
+        $categoryList = $productCategory->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
 
         return view($this->pathViewController .  'edit', [
             'params'        => $this->params,

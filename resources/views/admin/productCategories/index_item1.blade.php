@@ -1,4 +1,4 @@
-<li class="list-group-item" style="display:flex; justify-content:space-between" data-id="{{ $item->id }}">
+<li class="dd-item" style="display:flex; justify-content:space-between" data-id="{{ $item->id }}">
     <div class="dd-handle"><input class="form-check-input m-0 align-middle" type="checkbox"
             aria-label="Select all invoices"></div>
     <div class="dd-handle">{{ $item->id }}</div>
@@ -6,8 +6,8 @@
 
     <div class="dd-handle"><x-admin.btn-status :status="$item->status" :link="$item->linkStatus" :id="$item->id" /></div>
     <div class="dd-handle"><x-admin.item-history :by="$item->created_by" :time="$item->created_at" /></div>
-    <div class="dd-handle"><x-admin.item-history :by="$item->updated_by" :time="$item->updated_at" /></div>
-    <div class="dd-handle"><a href="{{ route('admin.productCategories.edit', ['item' => $item]) }}"
+    <div class="dd-handle"> <x-admin.item-history :by="$item->updated_by" :time="$item->updated_at" /></div>
+    <div class="dd-handle"> <a href="{{ route('admin.productCategories.edit', ['item' => $item]) }}"
             class="btn btn-orange btn-icon">
             <i class="fa-regular fa-pen-to-square"></i></a>
         <form class="d-inline-block form-delete" method="POST"

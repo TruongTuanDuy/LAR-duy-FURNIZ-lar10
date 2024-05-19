@@ -12,6 +12,7 @@ class ProductCategoryController extends AdminController
     {
         $this->model = new MainModel();
         $this->pathViewController = 'admin.productCategories.';
+        $this->params['category_root'] = FALSE;
     }
 
     public function updateTree(Request $request)
@@ -35,6 +36,7 @@ class ProductCategoryController extends AdminController
      */
     public function create()
     {
+        $this->params['category_root'] = TRUE;
         $nodes = $this->model->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
         return view($this->pathViewController .  'create', compact('nodes'));
     }
@@ -63,6 +65,7 @@ class ProductCategoryController extends AdminController
     public function edit(MainModel $item)
     {
         $this->params['id'] = $item->id;
+        $this->params['category_root'] = TRUE;
         $nodes = $this->model->listItems($this->params, ['task' => 'admin-list-items-in-select-box']);
         return view($this->pathViewController .  'edit', compact(
             'item',

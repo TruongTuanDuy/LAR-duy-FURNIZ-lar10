@@ -23,7 +23,7 @@ class ArticleCategory extends Admin
             $result = self::all();
         }
 
-        if ($options['task'] == "admin-list-items-category") {
+        if ($options['task'] == "admin-list-items-in-select-box") {
             $query = $this->select('id', 'name')->orderBy('name', 'asc');
 
             $result =  $query->pluck('name', 'id')->toArray();

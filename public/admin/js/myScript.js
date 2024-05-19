@@ -1,28 +1,70 @@
 $(document).ready(function () {
 
-    let categoryTree = $('#nestable-category');
-    // let outputNestable=$('#output');
-    categoryTree.nestable({ /* config options */ }).on('change', function () {
-        let dataSend = categoryTree.nestable('serialize');
-        $.ajax({
-            type: "POST",
-            url: categoryTree.data('url'),
-            data: {
-                data: dataSend,
-                _token: $('meta[name="csrf-token"]').attr("content")
-            },
-            dataType: "json",
-            success: function (response) {
-                console.log(response);
-            },
-        });
-    });
+    // Simple list
+    // var simpleList = $('#simpleList');
+    // var sortable = Sortable.create(nestedDemo, {
+    //     animation: 150,
+    //     ghostClass: 'blue-background-class',
+    //     onEnd: function (/**Event*/evt) {
+    //         console.log(123);
+    //         for (var i = 0; i < sortable.length; i++) {
+    //             new Sortable(sortable[i], {
+    //                 group: 'nested',
+    //                 animation: 150,
+    //                 fallbackOnBody: true,
+    //                 swapThreshold: 0.65
+    //             });
+    //         }
+    //     },
+    // });
 
+    // SortableJS
+    // let categoryTree = $('#sortable-list');
+    // var sortable = Sortable.create(categoryTree);
+    // sortable.on('change', function () {
+    //     console.log(sortable);
+
+    //     let dataSend = categoryTree.nestable('serialize');
+    //     $.ajax({
+    //         type: "POST",
+    //         url: categoryTree.data('url'),
+    //         data: {
+    //             data: dataSend,
+    //             _token: $('meta[name="csrf-token"]').attr("content")
+    //         },
+    //         dataType: "json",
+    //         success: function (response) {
+    //             console.log(response);
+    //         },
+    //     });
+    // });
+
+    // Nestable2
+    // let categoryTree = $('#nestable-category');
+    // categoryTree.nestable({ /* config options */ }).on('change', function () {
+    //     let dataSend = categoryTree.nestable('serialize');
+    //     $.ajax({
+    //         type: "POST",
+    //         url: categoryTree.data('url'),
+    //         data: {
+    //             data: dataSend,
+    //             _token: $('meta[name="csrf-token"]').attr("content")
+    //         },
+    //         dataType: "json",
+    //         success: function (response) {
+    //             console.log(response);
+    //         },
+    //     });
+    // });
 
     new DataTable("#myDataTable");
 
     $('.select2').select2();
 
+    // $("#dropzone").dropzone({ url: "/" });
+    var myDropzone = new Dropzone("#dropzone", {
+        url: "/",
+    });
 
 
     // Ajax Change Ordering

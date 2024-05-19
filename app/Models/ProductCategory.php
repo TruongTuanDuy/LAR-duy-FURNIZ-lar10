@@ -40,7 +40,11 @@ class ProductCategory extends Admin
         }
 
         if ($options['task'] == "admin-list-items-in-select-box") {
-            $query = self::select('id', 'name')->withDepth()->defaultOrder();
+            if ($params['category_root'] == TRUE) {
+                $query = self::select('id', 'name')->withDepth()->defaultOrder();
+            } else {
+                $query = self::select('id', 'name')->withDepth()->having('depth', '>', 0)->defaultOrder();
+            };
             if (isset($params['id'])) {
                 $node = self::find($params['id']);
                 $query->where('_lft', '<', $node->_lft)->orWhere('_lft', '>', $node->_rgt);

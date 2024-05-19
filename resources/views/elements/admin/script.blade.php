@@ -7,6 +7,10 @@
     <script src="{{ asset('admin/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ asset('admin/assets/libs/notifyjs/notify.min.js') }}"></script>
     <script src="{{ asset('admin/assets/libs/nestable2/jquery.nestable.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/sortablejs/Sortable.js') }}"></script>
+    {{-- <script src="{{ asset('admin/assets/libs/sortablejs/prettify.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/sortablejs/app.js') }}"></script> --}}
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 
     <!-- Tabler Core -->
     <script src="{{ asset('admin/assets/js/tabler.min.js') }}" defer></script>

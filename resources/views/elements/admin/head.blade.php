@@ -10,6 +10,7 @@
 {{-- <link href="{{ asset('admin/assets/libs/select2/dist/css/select2.min.css') }}" rel="stylesheet" /> --}}
 <link href="{{ asset('admin/assets/libs/select2/select2.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('admin/assets/libs/nestable2/jquery.nestable.min.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
 {{-- CSS Theme --}}
 <link href="{{ asset('admin/assets/css/tabler.min.css') }}" rel="stylesheet" />

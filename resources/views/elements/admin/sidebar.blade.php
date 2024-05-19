@@ -334,7 +334,7 @@
                                 <a class="dropdown-item" href="{{ route('admin.productCategories.index') }}">
                                     Danh mục
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.productCategories.index') }}">
+                                <a class="dropdown-item" href="{{ route('admin.products.index') }}">
                                     Sản phẩm
                                 </a>
                             </div>
